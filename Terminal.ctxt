@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Terminal()
+comment0.text=\nConstructor\ for\ objects\ of\ class\ Terminal\n\n
+comment1.params=text
+comment1.target=void\ print(String)
+comment1.text=\nPrint\ a\ line\ of\ data\ to\ the\ terminal\n\n@param\ \ text\ \ \ the\ text\ to\ print\ to\ the\ terminal\n\n
+numComments=2
