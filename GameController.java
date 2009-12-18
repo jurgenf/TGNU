@@ -9,6 +9,7 @@ public class GameController
 {
     private Terminal terminal;
     private String username;
+    private Directory filesystem;
     
     //private Shell shell;
 
@@ -43,6 +44,7 @@ public class GameController
      */
     public void initTheGame()
     {
+        this.createFileSystem();
         terminal.setPrompt(username+"@h4ckst4ti0n> ");
         
         this.hackCinematic();
@@ -114,6 +116,21 @@ public class GameController
         catch(Exception e) {
              System.out.println("Fatal error in the game: "+e);
         }
-    }    
+    }
+    
+    /**
+     * Creates the filesystem
+     */
+    public void createFileSystem()
+    {
+        filesystem = new Directory("/");
+        Directory home = new Directory("home", filesystem);
+        Directory userdir = new Directory(getUsername(), home);
+        Directory mainframe = new Directory("mainframe", filesystem);
+        
+        home.addChild(userdir);
+        filesystem.addChild(home);
+        filesystem.addChild(mainframe);
+    }
                
 }
