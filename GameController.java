@@ -127,10 +127,16 @@ public class GameController
         Directory home = new Directory("home", filesystem);
         Directory userdir = new Directory(getUsername(), home);
         Directory mainframe = new Directory("mainframe", filesystem);
+        Directory mainframeEtc = new Directory("etc", mainframe);
+        Directory mainframeHome = new Directory("home", mainframe);
         
         home.addChild(userdir);
+        
         filesystem.addChild(home);
         filesystem.addChild(mainframe);
+        
+        mainframe.addChild(mainframeEtc);
+        mainframe.addChild(mainframeHome);
     }
                
 }
