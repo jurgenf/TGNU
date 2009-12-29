@@ -8,18 +8,21 @@
 public class File
 {
     private String name;
+    private String content;
     private int size;
 
     /**
      * Constructor for objects of class file
      * 
      * @param   String name     The name of the file
+     * @param   String content  The content of the file
      * @param   int size        The size of the file
      */
-    public File(String name, int size)
+    public File(String name, String content, int size)
     {
         this.name = name;
         this.size = size;
+        this.content = content;
     }
 
     /**
@@ -30,6 +33,16 @@ public class File
     public String getName()
     {
         return name;
+    }
+    
+    /**
+     * Get the content of the file.
+     * 
+     * @return  content     The content of the file
+     */
+    public String getContent()
+    {
+        return content;
     }
     
     /**

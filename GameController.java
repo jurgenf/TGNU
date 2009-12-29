@@ -123,12 +123,50 @@ public class GameController
      */
     public void createFileSystem()
     {
+        //The Files
+            //mainframeEtc
+        File passwords = new File("passwords", "user:thomas \npassword:1337 \nuser:et \npassword:Go Home \nuser:earl \npassword:My Name= \nuser:henry \npassword:Frankenstein", 10);
+        File shadow = new File("shadow", "6zI18EUZW4watEJ15NEmk0GpQjrAJU5h5BVWPMxwnPdjtdQdqhpRf7bWQo+4TcB2XkRKYL1q+hYZkDaLSi4+BltcmIYeWq0Y9ByNU7LPJsF11vkfGp8LoSaKBMwWG23DJNKk/tVH2Lu9R/Z60HhdhbbWQo+4TcB2CNLlRpNkZ8tMaPesK9xEog==", 50);
+        File profile = new File("profile", "", 1);
+        File networks = new File("networks", "", 1);
+        File modules = new File("modules", "", 1);
+        File host = new File("host.conf", "", 1);
+        File services = new File("sevices", "", 18);
+        
+            //mainframeBin
+        File bash = new File("bash", "", 712);
+        File cat = new File("cat", "", 30);
+        File cp = new File("cp", "", 74);
+        File dir = new File("dir", "", 94);
+        File ls = new File("ls", "", 94);
+        
+            //mainframeTmp
+
+        //tmp file maken met sql query voor alien. voorbeeld: File("aliendb_backup_19082009.sql","CREATE alien....",2000)
+        //MySQL workbench
+        
+        
+        
+        //The Directories
         filesystem = new Directory("/");
         Directory home = new Directory("home", filesystem);
         Directory userdir = new Directory(getUsername(), home);
+        
         Directory mainframe = new Directory("mainframe", filesystem);
+        
         Directory mainframeEtc = new Directory("etc", mainframe);
+        Directory mainframeBin = new Directory("bin", mainframe);
         Directory mainframeHome = new Directory("home", mainframe);
+        Directory mainframeTmp = new Directory("tmp", mainframe);
+        Directory mainframeVar = new Directory("var", mainframe);
+        
+        Directory earl = new Directory("earl", "My Name=", mainframeHome);
+        Directory thomas = new Directory("thomas", "1337", mainframeHome);
+        Directory et = new Directory("et", "Go Home", mainframeHome);
+        Directory henry = new Directory("henry", "Frankenstein", mainframeHome);
+        
+        Directory www = new Directory("www", mainframeVar);
+        
         
         home.addChild(userdir);
         
@@ -137,6 +175,16 @@ public class GameController
         
         mainframe.addChild(mainframeEtc);
         mainframe.addChild(mainframeHome);
+        mainframe.addChild(mainframeBin);
+        mainframe.addChild(mainframeTmp);
+        mainframe.addChild(mainframeVar);
+        
+        mainframeHome.addChild(earl);
+        mainframeHome.addChild(thomas);
+        mainframeHome.addChild(et);
+        mainframeHome.addChild(henry);   
+        
+        mainframeVar.addChild(www);
         
     }
                

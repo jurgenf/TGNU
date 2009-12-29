@@ -11,6 +11,7 @@ public class Directory
     private String name;
     private String password;
     private ArrayList<Directory> childs;
+    private ArrayList<File> files;
     private Directory parent;
 
     /**
@@ -27,6 +28,7 @@ public class Directory
         this.password = password;
         this.parent = parent;
         childs = new ArrayList<Directory>();
+        files = new ArrayList<File>();
     }
     
     /**
@@ -42,6 +44,7 @@ public class Directory
         this.password = password;
         childs = new ArrayList<Directory>();
         this.parent = parent;
+        files = new ArrayList<File>();
     }
     
     /**
@@ -54,6 +57,7 @@ public class Directory
     {
         this.name = name;
         childs = new ArrayList<Directory>();
+        files = new ArrayList<File>();
     }
     
     /**
@@ -77,12 +81,22 @@ public class Directory
     }
     
     /**
-     * Add a directory object to the ArrayList childs
+     * Add a Directory object to the ArrayList childs
      * 
-     * @param   Directory child     The instance of the class Directory which needs to be added to de ArrayList childs
+     * @param   Directory child     The instance of the class Directory which needs to be added to the ArrayList childs
      */
     public void addChild(Directory child)
     {
         childs.add(child);
+    }
+    
+    /**
+     * Add a File object to the ArrayList files
+     * 
+     * @param   File file   The instance of the class File which needs to be added to the ArrayList files
+     */
+    public void addFile(File file)
+    {
+        files.add(file);
     }
 }
