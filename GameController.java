@@ -137,6 +137,7 @@ public class GameController
         
         mainframe.addChild(mainframeEtc);
         mainframe.addChild(mainframeHome);
+        
     }
                
 }

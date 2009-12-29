@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.params=name\ password\ parent
+comment0.target=Directory(String,\ String,\ Directory)
+comment0.text=\nThe\ constructor\ creates\ an\ object\ of\ the\ class\ Directory.\nIt\ requires\ a\ String\ name\ and\ a\ String\ password.\n\n@param\ \ \ String\ name\ \ \ \ \ \ \ \ \ The\ name\ of\ the\ directory.\n@param\ \ \ String\ password\ \ \ \ \ The\ password\ which\ is\ required\ to\ access\ this\ directory.\n@param\ \ \ Directory\ parent\ \ \ \ The\ directories\ parent.\n\n
+comment1.params=name\ parent
+comment1.target=Directory(String,\ Directory)
+comment1.text=\nThe\ constructor\ creates\ an\ object\ of\ the\ class\ Directory.\nIt\ requires\ a\ String\ name\ and\ a\ String\ password.\n\n@param\ \ \ String\ name\ \ \ \ \ \ \ \ \ The\ name\ of\ the\ directory.\n@param\ \ \ String\ password\ \ \ \ \ The\ password\ which\ is\ required\ to\ access\ this\ directory.\n\n
+comment2.params=name
+comment2.target=Directory(String)
+comment2.text=\nThe\ constructor\ creates\ an\ object\ of\ the\ class\ Directory.\nIt\ requires\ a\ String\ name.\n\n@param\ String\ name\ \ \ \ \ \ \ The\ name\ of\ the\ directory.\n\n
+comment3.target=String\ getName()
+comment3.text=\nGet\ the\ name\ of\ this\ directory\n\n@return\ \ String\ name\ \ \ \ \ The\ name\ of\ the\ directory.\n\n
+comment4.target=String\ getPassword()
+comment4.text=\nGet\ the\ password\ of\ this\ directory\n\n@return\ \ String\ password\ \ \ \ \ The\ password\ of\ this\ directory\n\n
+comment5.params=child
+comment5.target=void\ addChild(Directory)
+comment5.text=\nAdd\ a\ directory\ object\ to\ the\ ArrayList\ childs\n\n@param\ \ \ Directory\ child\ \ \ \ \ The\ instance\ of\ the\ class\ Directory\ which\ needs\ to\ be\ added\ to\ de\ ArrayList\ childs\n\n
+numComments=6
