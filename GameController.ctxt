@@ -10,6 +10,11 @@ comment3.text=\nReturn\ the\ players\ username\n\n@return\ \ the\ players\ usern
 comment4.params=sleepTime
 comment4.target=void\ sleep(int)
 comment4.text=\nsleep\ the\ program\nused\ to\ simulate\ the\ feeling\ of\ the\ mainframe/computer\ processing\ the\ input\n\n@param\ \ \ int\ the\ time\ to\ sleep\ in\ miliseconds\n\n
-comment5.target=void\ createFileSystem()
-comment5.text=\nCreates\ the\ filesystem\n\n
-numComments=6
+comment5.params=command
+comment5.target=boolean\ processCommand(Shell)
+comment6.target=void\ createFileSystem()
+comment6.text=\nCreates\ the\ filesystem\n\n
+comment7.params=command
+comment7.target=boolean\ exit(Shell)
+comment7.text=\nprivate\ void\ goMap(Command\ command)\ \n{\nif(\!shell.hasSecondWord())\ {\n//\ if\ there\ is\ no\ second\ word,\ we\ don't\ know\ where\ to\ go...\nSystem.out.println("Go\ where?");\nreturn;\n}\nString\ direction\ \=\ shell.getSecondWord();\n//\ Try\ to\ leave\ current\ room.\nDirectory\ nextRoom\ \=\ currentDir.getExit(direction);\nif\ (nextRoom\ \=\=\ null)\ {\nSystem.out.println("There\ is\ no\ door\!");\n}\nelse\ {\ncurrentDir\ \=\ nextRoom;\n}\n}\n\n
+numComments=8

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 /**
  * This class implements a terminal from wich the program talks to the terminal.
  * 
@@ -12,6 +13,8 @@ public class Terminal
     private Scanner terminalReader;
     private String prompt;
     private GameController theGame;
+    private Command commands;
+    private Shell shell;
     
     /**
      * Constructor for objects of class Terminal
@@ -19,10 +22,38 @@ public class Terminal
     public Terminal(GameController theGame)
     {
         terminalReader = new Scanner(System.in);
+        commands = new Command();
         prompt = ">";
         this.theGame = theGame;
+    
+        shell = new Shell(null, null);
     }
 
+    public Shell getCommand() 
+    {
+        String inputLine;   // will hold the full input line
+        String word1 = null;
+        String word2 = null;
+
+        System.out.print(prompt);
+       
+        inputLine = terminalReader.nextLine();
+
+        // Find up to two words on the line.
+        Scanner tokenizer = new Scanner(inputLine);
+        if(tokenizer.hasNext()) {
+            word1 = tokenizer.next();      // get first word
+            if(tokenizer.hasNext()) {
+                word2 = tokenizer.next();      // get second word
+                // note: we just ignore the rest of the input line.
+            }
+        }
+
+        // Now check whether this word is known. If so, create a command
+        // with it. If not, create a "null" command (for unknown command).
+        return new Shell(commands.getCommand(word1), word2);
+    }
+    
     /**
      * Print a line of text to the terminal
      * 
@@ -111,6 +142,9 @@ public class Terminal
         }
         return words;
     }
-}
     
-   
+    public void showCommands()
+    {
+        commands.showAll();
+    }
+}

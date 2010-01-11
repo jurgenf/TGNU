@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=commandWord\ secondWord
+comment0.target=Shell(Commands,\ String)
+comment0.text=\nCreate\ a\ shell\ object.\ The\ command\ and\ the\ parameter\ must\ be\ supplied,\nbut\ both\ or\ one\ of\ them\ can\ be\ null.\n\n@param\ \ \ command\ represents\ the\ input\ command\ of\ the\ player.\n@param\ \ \ parameter\ represents\ the\ directory\ or\ the\ parameter\ of\ the\ command.\n\n
+comment1.target=Commands\ getCommand()
+comment1.text=\nReturn\ the\ command\ word,\ the\ first\ word,\ of\ this\ command.\nIf\ the\ command\ is\ Unkown\ the\ result\ will\ be\ null\n@return\ \ \ \ \ \ The\ command\ word.\n\n
+comment2.target=String\ getSecondWord()
+comment2.text=\nReturn\ the\ secondWord\ of\ the\ command,\ returns\ null\ if\ there\ is\ no\ second\ word.\n@return\ \ \ \ \ \ The\ second\ word\ of\ the\ command,\ returns\ null\ if\ there\ is\ no\ second\ word.\n\n
+comment3.target=boolean\ isUnknown()
+comment4.target=boolean\ hasSecondWord()
+comment5.target=void\ printHelp()
+numComments=6

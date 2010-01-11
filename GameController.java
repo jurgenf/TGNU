@@ -9,10 +9,9 @@ public class GameController
 {
     private Terminal terminal;
     private String username;
+    private Shell shell;
     private Directory filesystem;
-    
-    //private Shell shell;
-
+    private Directory currentDir;
     /**
      * Constructor for objects of class GameController
      */
@@ -20,7 +19,7 @@ public class GameController
     {
         //initialize the instance variables
         terminal = new Terminal(this);
-        // shell = new Shell();
+        shell = new Shell(null, null);
         
         //output the start screen
         terminal.print("******************************************************");
@@ -36,6 +35,16 @@ public class GameController
         terminal.print("Please enter your username:");
         username = terminal.getUsername();
         this.initTheGame();
+        
+        
+        boolean finished = false;
+        while (! finished) {
+            Shell command = terminal.getCommand();
+            finished = processCommand(command);
+        }
+        System.out.println("Thank you for playing.  Good bye.");
+        
+        createFileSystem();
     }
 
     /**
@@ -118,6 +127,43 @@ public class GameController
         }
     }
     
+    private boolean processCommand(Shell command) 
+    {
+        boolean wantToQuit = false;
+        
+        Commands commands = command.getCommand();    
+        
+        if(commands == Commands.UNKNOWN) {
+            System.out.println(terminal.getPrompt() + "Unknown Command.");
+            return false;
+        }
+
+        if (commands == Commands.HELP) {
+            shell.printHelp();
+        }
+        else if (commands == Commands.COPY) {
+            shell.printHelp();
+        }
+        else if (commands == Commands.CD) {
+           shell.printHelp();
+        }
+        else if (commands == Commands.CAT) {
+           shell.printHelp();
+        }
+        else if (commands == Commands.UPTIME) {
+            shell.printHelp();
+        }
+        else if (commands == Commands.LIST) {
+            filesystem.showAllChilds();
+        }
+      else if (commands == Commands.QUIT) {
+           wantToQuit = exit(command);
+       } 
+        //else command not recognised.
+        return wantToQuit;
+    }
+        
+    
     /**
      * Creates the filesystem
      */
@@ -145,9 +191,7 @@ public class GameController
         //tmp file maken met sql query voor alien. voorbeeld: File("aliendb_backup_19082009.sql","CREATE alien....",2000)
         //MySQL workbench
         
-        
-        
-        //The Directories
+         //The Directories
         filesystem = new Directory("/");
         Directory home = new Directory("home", filesystem);
         Directory userdir = new Directory(getUsername(), home);
@@ -186,6 +230,44 @@ public class GameController
         
         mainframeVar.addChild(www);
         
+        //Set exits for all maps
+       // filesystem.setExit("mainframe", mainframe);
+       // filesystem.setExit("home", mainframeHome);
+            
+        currentDir = mainframeHome;
     }
-               
+    
+    
+  /** 
+    private void goMap(Command command) 
+    {
+        if(!shell.hasSecondWord()) {
+            // if there is no second word, we don't know where to go...
+            System.out.println("Go where?");
+            return;
+        }
+
+        String direction = shell.getSecondWord();
+
+        // Try to leave current room.
+        Directory nextRoom = currentDir.getExit(direction);
+
+        if (nextRoom == null) {
+            System.out.println("There is no door!");
+        }
+        else {
+            currentDir = nextRoom;
+        }
+    }
+     */
+    private boolean exit(Shell command) 
+    {
+        if(command.hasSecondWord()) {
+            System.out.println("Quit what?");
+            return false;
+        }
+        else {
+            return true;  // signal that we want to quit
+        }
+    }
 }
