@@ -62,7 +62,7 @@ public class Directory
         files = new ArrayList<File>();
     }
     
-     public void showAllChilds()
+     public void printChilds()
     {
         for(Directory dir : childs)
         {
@@ -118,5 +118,16 @@ public class Directory
     public void addFile(File file)
     {
         files.add(file);
+    }
+     
+    /**
+     * 
+     */
+    public void printFiles()
+    {
+        for(File file : files)
+        {
+            System.out.println(file.getName());
+        }
     }
 }

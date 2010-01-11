@@ -10,6 +10,7 @@ public class File
     private String name;
     private String content;
     private int size;
+    private Directory directory;
 
     /**
      * Constructor for objects of class file
@@ -18,11 +19,12 @@ public class File
      * @param   String content  The content of the file
      * @param   int size        The size of the file
      */
-    public File(String name, String content, int size)
+    public File(String name, String content, int size, Directory directory)
     {
         this.name = name;
         this.size = size;
         this.content = content;
+        directory.addFile(this);
     }
 
     /**
