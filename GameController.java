@@ -9,7 +9,6 @@ public class GameController
 {
     private Terminal terminal;
     private String username;
-    private Shell shell;
     private Directory filesystem;
     private Directory currentDir;
     /**
@@ -17,34 +16,21 @@ public class GameController
      */
     public GameController()
     {
-        //initialize the instance variables
-        terminal = new Terminal(this);
-        shell = new Shell(null, null);
         
         //output the start screen
-        terminal.print("******************************************************");
-        terminal.print("*   _______ _____ _   _ _    _                       *");
-        terminal.print("*   |__   __/ ____| \\  | |  | |                      *");
-        terminal.print("*     | | | |  __|  \\| | |  | |                      *");
-        terminal.print("*     | | | | |_ | . ` | |  | |                      *");
-        terminal.print("*     | | | |__| | |\\  | |__| |                      *");
-        terminal.print("*     |_|  \\_____|_| \\_|\\____/                       *");
-        terminal.print("*        This Game is Not Unix version 0.1           *");
-        terminal.print("*****************************************************");
-        terminal.print("");
-        terminal.print("Please enter your username:");
-        username = terminal.getUsername();
+        Terminal.print("******************************************************");
+        Terminal.print("*   _______ _____ _   _ _    _                       *");
+        Terminal.print("*   |__   __/ ____| \\  | |  | |                      *");
+        Terminal.print("*     | | | |  __|  \\| | |  | |                      *");
+        Terminal.print("*     | | | | |_ | . ` | |  | |                      *");
+        Terminal.print("*     | | | |__| | |\\  | |__| |                      *");
+        Terminal.print("*     |_|  \\_____|_| \\_|\\____/                       *");
+        Terminal.print("*        This Game is Not Unix version 0.1           *");
+        Terminal.print("*****************************************************");
+        Terminal.print("");
+        Terminal.print("Please enter your username: ");
+        username = Terminal.askUsername();
         this.initTheGame();
-        
-        
-        boolean finished = false;
-        while (! finished) {
-            Shell command = terminal.getCommand();
-            finished = processCommand(command);
-        }
-        System.out.println("Thank you for playing.  Good bye.");
-        
-        createFileSystem();
     }
 
     /**
@@ -54,15 +40,28 @@ public class GameController
     public void initTheGame()
     {
         this.createFileSystem();
-        terminal.setPrompt(username+"@h4ckst4ti0n> ");
-        
+        Terminal.setPrompt(username+"@h4ckst4ti0n> ");
+        // !!!! DO NOT SWITCH TO ACTIVATE THIS IN FINAL !!!!
+        //Terminal.print("!!! hacking scene skipped, please activate this in final !!!");
         this.hackCinematic();
-        terminal.print("Welcome to TGNU, the game now starts!");
-        terminal.print("You have broken into the fileserver of Area51, the files are mounted in the folder 'mainframe'");
-        terminal.print("Your task is to seek out and copy classified data about aliens to your local harddrive");
-        terminal.print("Put the collected data in your home folder (/home/"+username+"/)");
-        terminal.print("Type 'help' for more info about the commands you can use.");
-        terminal.getInput();
+        
+        Terminal.print("Welcome to TGNU, the game now starts!");
+        Terminal.print("You have broken into the fileserver of Area51, the files are mounted in the folder 'mainframe'");
+        Terminal.print("Your task is to seek out and copy classified data about aliens to your local harddrive");
+        Terminal.print("Put the collected data in your home folder (/home/"+username+"/)");
+        Terminal.print("Type 'help' for more info about the commands you can use.");
+       
+        //load in the commands that can be used.
+        Command.initCommandList();
+        
+        // this boolean stays false as long as the user doen not type 'exit'
+        boolean exit = false;
+        while(!exit)
+        {
+            //looks strange but getInput returns false when exit is recieved and true when tekst is recieved (see getInput documentation)
+            exit = Terminal.getInput();
+        }
+        
     }
     
     /**
@@ -71,32 +70,32 @@ public class GameController
      */
     public void hackCinematic()
     {
-        String prompt = terminal.getPrompt();
-        terminal.printInline(prompt);
-        terminal.printAsTyped("ssh serv1425.area51.gov");
-        terminal.print("Welcome to the Area51 fileserver");
+        String prompt = Terminal.getPrompt();
+        Terminal.printInline(prompt);
+        Terminal.printAsTyped("ssh serv1425.area51.gov");
+        Terminal.print("Welcome to the Area51 fileserver");
         this.sleep(1000);
-        terminal.print("Please enter username and password");
-        terminal.printInline("username: ");
+        Terminal.print("Please enter username and password");
+        Terminal.printInline("username: ");
         this.sleep(1000);
-        terminal.printAsTyped("root");
+        Terminal.printAsTyped("root");
         this.sleep(1000);
-        terminal.printInline("password: ");
+        Terminal.printInline("password: ");
         this.sleep(4000);
-        terminal.printAsTyped("Alien1");
+        Terminal.printAsTyped("Alien1");
         this.sleep(3000);
-        terminal.print("Welcome root you now have full system access.");
+        Terminal.print("Welcome root you now have full system access.");
         this.sleep(2000);
-        terminal.printInline("root@serv1425# ");
+        Terminal.printInline("root@serv1425# ");
         this.sleep(3000);
-        terminal.printAsTyped("exit");
+        Terminal.printAsTyped("exit");
         this.sleep(1000);
-        terminal.printInline(prompt);
+        Terminal.printInline(prompt);
         this.sleep(1000);
-        terminal.printAsTyped("sshfs root@serv1425.area51.gov:/ /mainframe");
-        terminal.printInline("password: ");
+        Terminal.printAsTyped("sshfs root@serv1425.area51.gov:/ /mainframe");
+        Terminal.printInline("password: ");
         this.sleep(800);
-        terminal.printAsTyped("Alien1");
+        Terminal.printAsTyped("Alien1");
         this.sleep(500);
     } 
     
@@ -111,13 +110,14 @@ public class GameController
         return username;
     }
     
-    /**
+
+     /**
      * sleep the program
      * used to simulate the feeling of the mainframe/computer processing the input
      * 
      * @param   int the time to sleep in miliseconds
      */    
-    public void sleep(int sleepTime) 
+    public static void sleep(int sleepTime) 
     {
         try {
             Thread.sleep(sleepTime);
@@ -126,42 +126,7 @@ public class GameController
              System.out.println("Fatal error in the game: "+e);
         }
     }
-    
-    private boolean processCommand(Shell command) 
-    {
-        boolean wantToQuit = false;
-        
-        Commands commands = command.getCommand();    
-        
-        if(commands == Commands.UNKNOWN) {
-            System.out.println(terminal.getPrompt() + "Unknown Command.");
-            return false;
-        }
-
-        if (commands == Commands.HELP) {
-            shell.printHelp();
-        }
-        else if (commands == Commands.COPY) {
-            shell.printHelp();
-        }
-        else if (commands == Commands.CD) {
-           shell.printHelp();
-        }
-        else if (commands == Commands.CAT) {
-           shell.printHelp();
-        }
-        else if (commands == Commands.UPTIME) {
-            shell.printHelp();
-        }
-        else if (commands == Commands.LIST) {
-            filesystem.showAllChilds();
-        }
-      else if (commands == Commands.QUIT) {
-           wantToQuit = exit(command);
-       } 
-        //else command not recognised.
-        return wantToQuit;
-    }
+  
         
     
     /**
@@ -236,38 +201,6 @@ public class GameController
             
         currentDir = mainframeHome;
     }
-    
-    
-  /** 
-    private void goMap(Command command) 
-    {
-        if(!shell.hasSecondWord()) {
-            // if there is no second word, we don't know where to go...
-            System.out.println("Go where?");
-            return;
-        }
+   
 
-        String direction = shell.getSecondWord();
-
-        // Try to leave current room.
-        Directory nextRoom = currentDir.getExit(direction);
-
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
-        }
-        else {
-            currentDir = nextRoom;
-        }
-    }
-     */
-    private boolean exit(Shell command) 
-    {
-        if(command.hasSecondWord()) {
-            System.out.println("Quit what?");
-            return false;
-        }
-        else {
-            return true;  // signal that we want to quit
-        }
-    }
 }

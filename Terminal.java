@@ -5,61 +5,22 @@ import java.util.StringTokenizer;
  * This class implements a terminal from wich the program talks to the terminal.
  * 
  * @author Jurgen Franse <fran0060@hz.nl>
- * @version 0.1
+ * @version 0.2
  * */
 public class Terminal
 {
 
-    private Scanner terminalReader;
-    private String prompt;
-    private GameController theGame;
-    private Command commands;
-    private Shell shell;
+    private static Scanner terminalReader = new Scanner(System.in);
+    private static String prompt = "> ";
     
-    /**
-     * Constructor for objects of class Terminal
-     */
-    public Terminal(GameController theGame)
-    {
-        terminalReader = new Scanner(System.in);
-        commands = new Command();
-        prompt = ">";
-        this.theGame = theGame;
-    
-        shell = new Shell(null, null);
-    }
 
-    public Shell getCommand() 
-    {
-        String inputLine;   // will hold the full input line
-        String word1 = null;
-        String word2 = null;
-
-        System.out.print(prompt);
-       
-        inputLine = terminalReader.nextLine();
-
-        // Find up to two words on the line.
-        Scanner tokenizer = new Scanner(inputLine);
-        if(tokenizer.hasNext()) {
-            word1 = tokenizer.next();      // get first word
-            if(tokenizer.hasNext()) {
-                word2 = tokenizer.next();      // get second word
-                // note: we just ignore the rest of the input line.
-            }
-        }
-
-        // Now check whether this word is known. If so, create a command
-        // with it. If not, create a "null" command (for unknown command).
-        return new Shell(commands.getCommand(word1), word2);
-    }
     
     /**
      * Print a line of text to the terminal
      * 
      * @param  text   the text to print to the terminal
      */
-    public void print(String text)
+    public static void print(String text)
     {
         System.out.println(text);
     }
@@ -69,7 +30,7 @@ public class Terminal
      * 
      * @param   text   the text to print to the terminal
      */    
-    public void printInline(String text)
+    public static void printInline(String text)
     {
         System.out.print(text);
     }
@@ -79,13 +40,13 @@ public class Terminal
      * 
      * @param  text   the text to print to the terminal
      */
-    public void printAsTyped(String text)
+    public static void printAsTyped(String text)
     {
         char[] textArray = text.toCharArray();
         for(char character : textArray)
         {
             System.out.print(character);
-            theGame.sleep(100);
+            GameController.sleep(100);
         }
         System.out.print("\n");
     }
@@ -95,7 +56,7 @@ public class Terminal
      * 
      * @return  the username the user choosed
      */    
-    public String getUsername() 
+    public static String askUsername() 
     {
         System.out.print(prompt);
         String username = terminalReader.nextLine().trim().toLowerCase();
@@ -107,9 +68,9 @@ public class Terminal
      * 
      * @param  prompt the new prompt tekst to use
      */    
-    public void setPrompt(String prompt) 
+    public static void setPrompt(String newPrompt) 
     {
-        this.prompt = prompt;
+        prompt = newPrompt;
     }
     
     /**
@@ -118,7 +79,7 @@ public class Terminal
      * 
      * @return  the currently used prompt tekst
      */    
-    public String getPrompt() 
+    public static String getPrompt() 
     {
         return prompt;
     }
@@ -129,7 +90,7 @@ public class Terminal
      * 
      * @return  an ArrayList containing strings that where typed into the terminal
      */    
-    public ArrayList<String> getInput() 
+    public static boolean getInput() 
     {
         System.out.print(prompt);
         String inputLine = terminalReader.nextLine().trim().toLowerCase();
@@ -140,11 +101,7 @@ public class Terminal
         for(String word : wordArray) {
             words.add(word);
         }
-        return words;
-    }
-    
-    public void showCommands()
-    {
-        commands.showAll();
+        // return the result of the processCommand method so the GameController can decide what to do next.
+        return Command.processCommand(words);
     }
 }
