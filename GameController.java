@@ -7,7 +7,6 @@
  */
 public class GameController
 {
-    //private String username;
     private static String username;
     /**
      * Constructor for objects of class GameController
@@ -97,16 +96,6 @@ public class GameController
     } 
     
     
-//    /**
-//     * Return the players username
-//     *
-//     * @return  the players username 
-//     */
-//    public String getUsername()
-//    {
-//       return username;
-//    }
-
     /**
      * Return the players username
      * 

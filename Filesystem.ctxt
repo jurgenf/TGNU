@@ -1,3 +1,9 @@
 #BlueJ class context
 comment0.target=void\ addChilds()
-numComments=1
+comment0.text=\nAdd\ the\ Child\ directories\ to\ their\ parents\n\n
+comment1.target=Directory\ getCurrentDirectory()
+comment1.text=\nGet\ the\ current\ opened\ directory\n\n@return\ \ return\ the\ current\ opened\ directory\n\n
+comment2.params=dir
+comment2.target=void\ setCurrentDirectory(Directory)
+comment2.text=\nSet\ the\ current\ opened\ directory\n\n@param\ \ \ Directory\ dir\ \ \ The\ directory\ which\ should\ be\ opened.\ \ \n\n
+numComments=3

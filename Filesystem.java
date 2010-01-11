@@ -40,6 +40,13 @@ public class Filesystem
         //Set exits for all maps
        // filesystem.setExit("mainframe", mainframe);
        // filesystem.setExit("home", mainframeHome);
+       
+    //Set the default Directory to root   
+    private static Directory currentDirectory = root;
+    
+    /**
+     * Add the Child directories to their parents
+     */
     public static void addChilds()
     {
         home.addChild(userdir);
@@ -55,5 +62,24 @@ public class Filesystem
         mainframeHome.addChild(et);
         mainframeHome.addChild(henry); 
         mainframeVar.addChild(www);
+    }
+    /**
+     * Get the current opened directory
+     * 
+     * @return  return the current opened directory
+     */
+    public static Directory getCurrentDirectory()
+    {
+        return currentDirectory;
+    }
+    
+    /**
+     * Set the current opened directory
+     * 
+     * @param   Directory dir   The directory which should be opened.  
+     */
+    public static void setCurrentDirectory(Directory dir)
+    {
+        currentDirectory = dir;
     }
 }
