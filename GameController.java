@@ -13,7 +13,7 @@ public class GameController
      */
     public GameController()
     {
-        
+        Filesystem.addChilds();
         //output the start screen
         Terminal.print("******************************************************");
         Terminal.print("*   _______ _____ _   _ _    _                       *");
