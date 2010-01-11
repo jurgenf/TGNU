@@ -66,7 +66,7 @@ public class Directory
     {
         for(Directory dir : childs)
         {
-            System.out.println(dir.getName());
+            Terminal.print(dir.getName());
         }
     } 
     
@@ -127,7 +127,7 @@ public class Directory
     {
         for(File file : files)
         {
-            System.out.println(file.getName());
+            Terminal.print(file.getName());
         }
     }
 }
