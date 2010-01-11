@@ -1,5 +1,6 @@
 #BlueJ class context
 comment0.target=void\ initCommandList()
+comment0.text=\nInitialize\ the\ HashMap\ for\ the\ validcommands\ and\nput\ the\ commands\ in\ the\ HashMap.\n\n
 comment1.params=aString
 comment1.target=boolean\ isCommand(String)
 comment1.text=\nCheck\ whether\ a\ given\ String\ is\ a\ valid\ command\ word.\ \n@return\ true\ if\ it\ is,\ false\ if\ it\ isn't.\n\n
@@ -8,6 +9,13 @@ comment2.target=Commands\ getCommand(String)
 comment2.text=\nFind\ the\ CommandWord\ associated\ with\ a\ command\ word.\n@param\ commandWord\ The\ word\ to\ look\ up.\n@return\ The\ CommandWord\ correspondng\ to\ commandWord,\ or\ UNKNOWN\nif\ it\ is\ not\ a\ valid\ command\ word.\n\n
 comment3.params=words
 comment3.target=boolean\ processCommand(ArrayList<String>)
+comment3.text=\nProcesses\ the\ commands\ and\ the\ words\ which\ he\ receives\nfrom\ the\ terminal\ and\ will\ look\ if\ the\ first\ word\ \nis\ a\ command,\ if\ so\ he\ will\ excute\ the\ method\ of\ that\ command,\nif\ not\ he\ will\ say\ that\ it\ is\ a\ unknown\ command.\n\nchecks\ if\ the\ player\ wants\ to\ exit\ the\ game,\nif\ not\ wantToQuit\ will\ be\ false\ and\ checks\ if\ the\ word\nis\ another\ command.\ If\ the\ player\ types\ exit,\ wantToQuit\nwill\ be\ true\ and\ the\ game\ will\ stop.\n\n@return\ \ \ \ \ \ wantToQuit\ will\ return\ true\ if\ the\ players\ wants\ to\ exit.\n\n
 comment4.target=void\ showAll()
 comment4.text=\nPrint\ all\ valid\ commands\ to\ System.out.\n\n
-numComments=5
+comment5.target=void\ printHelp()
+comment5.text=\nMethod\ to\ show\ all\ the\ available\ commands.\n\n
+comment6.params=options
+comment6.target=void\ cd(String)
+comment7.params=options
+comment7.target=void\ cp(String)
+numComments=8
