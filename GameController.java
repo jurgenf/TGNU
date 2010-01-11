@@ -7,13 +7,13 @@
  */
 public class GameController
 {
-    private String username;
+    //private String username;
+    private static String username;
     /**
      * Constructor for objects of class GameController
      */
     public GameController()
     {
-        Filesystem.addChilds();
         //output the start screen
         Terminal.print("******************************************************");
         Terminal.print("*   _______ _____ _   _ _    _                       *");
@@ -27,6 +27,7 @@ public class GameController
         Terminal.print("");
         Terminal.print("Please enter your username: ");
         username = Terminal.askUsername();
+        Filesystem.addChilds();
         this.initTheGame();
     }
 
@@ -96,17 +97,26 @@ public class GameController
     } 
     
     
+//    /**
+//     * Return the players username
+//     *
+//     * @return  the players username 
+//     */
+//    public String getUsername()
+//    {
+//       return username;
+//    }
+
     /**
      * Return the players username
-     *
-     * @return  the players username 
-     */
-    public String getUsername()
+     * 
+     * @return the players username
+     */    
+    public static String getUsername()
     {
         return username;
     }
     
-
      /**
      * sleep the program
      * used to simulate the feeling of the mainframe/computer processing the input

@@ -10,7 +10,7 @@ public class Filesystem
     //De directories
     private static Directory root = new Directory("/");
     private static Directory home = new Directory("home", root);
-    private static Directory userdir = new Directory(Terminal.askUsername(), home);
+    private static Directory userdir = new Directory(GameController.getUsername(), home);
     private static Directory mainframe = new Directory("mainframe", root);
     private static Directory mainframeEtc = new Directory("etc", mainframe);
     private static Directory mainframeBin = new Directory("bin", mainframe);
