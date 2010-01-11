@@ -7,7 +7,6 @@
  */
 public class GameController
 {
-    private Terminal terminal;
     private String username;
     private Directory filesystem;
     private Directory currentDir;
