@@ -1,9 +1,10 @@
 
 /**
- * Write a description of class Filesystem here.
+ * This class makes it possible to create a filesystem by making directories and files 
+ * and link them together
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author penguisher 
+ * @version v0.3
  */
 public class Filesystem
 {
@@ -42,6 +43,16 @@ public class Filesystem
         Directory thomas = new Directory("thomas", "1337", mainframeHome);
         Directory et = new Directory("et", "Go Home", mainframeHome);
         Directory henry = new Directory("henry", "Frankenstein", mainframeHome);    
+        Directory alien1 = new Directory("noalien4u", "Frankenstein", henry);
+        Directory alien2 = new Directory("documents", "My Name=", earl);
+        Directory alien3 = new Directory("phone", et);
+        Directory fake1 = new Directory("schedule", henry);
+        Directory fake2 = new Directory("alienate", et);
+        Directory fake3 = new Directory("work", thomas);
+        Directory research1 = new Directory("research", henry);
+        Directory research2 = new Directory("research", earl);
+        Directory research3 = new Directory("research", et);
+        Directory research4 = new Directory("research", thomas);
 
 
         //addChilds
@@ -60,9 +71,18 @@ public class Filesystem
         mainframeHome.addChild(earl);
         mainframeHome.addChild(thomas);
         mainframeHome.addChild(et);
-        mainframeHome.addChild(henry); 
-        
-            
+        mainframeHome.addChild(henry);
+        henry.addChild(alien1);
+        henry.addChild(research1);
+        henry.addChild(fake1);
+        earl.addChild(alien2);
+        earl.addChild(research2);
+        et.addChild(research3);
+        et.addChild(alien3);
+        et.addChild(fake2);
+        thomas.addChild(research4);
+        thomas.addChild(fake3);
+                            
         //The Files
         mainframeEtc.addFile(new File("passwords", "user:thomas \npassword:1337 \nuser:et \npassword:Go Home \nuser:earl \npassword:My Name= \nuser:henry \npassword:Frankenstein", 10));
         mainframeEtc.addFile(new File("shadow", "6zI18EUZW4watEJ15NEmk0GpQjrAJU5h5BVWPMxwnPdjtdQdqhpRf7bWQo+4TcB2XkRKYL1q+hYZkDaLSi4+BltcmIYeWq0Y9ByNU7LPJsF11vkfGp8LoSaKBMwWG23DJNKk/tVH2Lu9R/Z60HhdhbbWQo+4TcB2CNLlRpNkZ8tMaPesK9xEog==", 50));
@@ -71,11 +91,54 @@ public class Filesystem
         mainframeEtc.addFile(new File("modules", "", 1));
         mainframeEtc.addFile(new File("host.conf", "", 1));
         mainframeEtc.addFile(new File("sevices", "", 18));
+        
         mainframeBin.addFile(new File("bash", "", 712));
         mainframeBin.addFile(new File("cat", "", 30));
         mainframeBin.addFile(new File("cp", "", 74));
         mainframeBin.addFile(new File("ls", "", 94));
+        
         mainframeTmp.addFile(new File("aliendb.sql","#\n# Database structure for database 'alien'\n#\n\nCREATE DATABASE /*!32312 IF NOT EXISTS*/ \"alien\" /*!40100 DEFAULT CHARACTER SET latin1 */;\n\nUSE \"alien\";\n\n\n#\n# Table structure for table 'administration'\n#\n\nCREATE TABLE /*!32312 IF NOT EXISTS*/ \"administration\" (\n  \"idAlien\" int(11) NOT NULL,\n  \"alienSpecie\" varchar(45) DEFAULT NULL,\n  \"picture\" varchar(45) DEFAULT NULL,\n  \"length\" int(11) DEFAULT NULL,\n  \"weight\" varchar(45) DEFAULT NULL,\n  PRIMARY KEY (\"idAlien\")\n);\n\n\n\n#\n# Dumping data for table 'administration'\n#\n\nLOCK TABLES \"administration\" WRITE;\n/*!40000 ALTER TABLE \"administration\" DISABLE KEYS;*/\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n    (0,'Vulcan','http://memory-alpha.org/en/wiki/Vulcan',179,'63');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n   (1,'Klingon','http://memory-alpha.org/en/wiki/Klingon',150,'100');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n    (2,'Romulan','http://memory-alpha.org/en/wiki/Romulan',90,'10');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n  (3,'Cardassien','http://memory-alpha.org/en/wiki/Cardassian',120,'40');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n   (4,'Ferengi','http://memory-alpha.org/en/wiki/Ferengi',50,'20');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n  (5,'Borg','http://memory-alpha.org/en/wiki/Borg',102,'16');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n   (6,'Bejoran','http://memory-alpha.org/en/wiki/Bajoran',393,'23');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n (7,'Betazoid','http://memory-alpha.org/en/wiki/Betazoid',42,'89');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n    (8,'wookiee','http://musicselections.files.wordpress.com/20',200,'54');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n   (9,'umpa lumpa','http://sipr.net/oompa_loompa.jpg',120,'40');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n (10,'tribble','http://www.product-reviews.net/wp-content/use',10,'3');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n    (11,'tril','http://memory-alpha.org/en/wiki/Trill',24,'3');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n   (12,'goa''uld',NULL,127,'30');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n    (13,'wraith','http://memory-alpha.org/en/wiki/Wraith',579,'440');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n (14,'furling',NULL,376,'146');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n    (15,'jem''hadar',NULL,234,'78');\n/*!40000 ALTER TABLE \"administration\" ENABLE KEYS;*/\nUNLOCK TABLES;\n/*!40101 SET SQL_MODE=@OLD_SQL_MODE;*/\n/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;*/", 14));
+
+        fake1.addFile(new File("timetable.xls","", 100));
+        fake1.addFile(new File("appointments.ics","", 40));
+        fake1.addFile(new File("timetablebackup.xls","", 100));
+        fake1.addFile(new File("appointmentsbackup.ics","", 40));
+        fake1.addFile(new File("review09.xls","", 1000));
+        fake2.addFile(new File("flame.doc","", 200));
+        fake2.addFile(new File("george.doc","",20));
+        fake2.addFile(new File("holiday2009.ppt","",40));
+        fake2.addFile(new File("obama.doc","", 300));
+        fake2.addFile(new File("bush.doc","", 231));
+        fake3.addFile(new File("cleaningschedule.xls","",124));
+        fake3.addFile(new File("juffrouwjannie.jpg","",1247));
+        fake3.addFile(new File("timetable.xls","", 289));
+        fake3.addFile(new File("appointments.ics","", 40));
+        fake3.addFile(new File("projects.xls","", 5023));
+        
+        alien1.addFile(new File("ufo-recovery.jpg", "", 2617));
+        alien1.addFile(new File("identify.jpg", "", 1737));
+        alien1.addFile(new File("corpse.jpg", "", 1275));
+        alien1.addFile(new File("beach.jpg", "", 1752));
+        alien1.addFile(new File("air.jpg", "", 17263));
+        alien1.addFile(new File("unidentified.jpg", "", 1923));
+        
+        alien2.addFile(new File("owwmommah.jpg", "",2718));
+        alien2.addFile(new File("gramps.jpg", "", 7519));
+        alien2.addFile(new File("stitch.jpg", "", 1723));
+        alien2.addFile(new File("wecallhimhomer.jpg", "", 1725));
+        alien2.addFile(new File("clues.jpg", "", 1234));
+        alien2.addFile(new File("tracks.jpg", "", 7820));
+        
+        alien3.addFile(new File("tracks.jpg", "", 1723));
+        alien3.addFile(new File("ufo.jpg", "", 4191));
+        alien3.addFile(new File("chacarron.mp3", "", 1873));
+        alien3.addFile(new File("wookie.jpg", "" ,1828));
+        alien3.addFile(new File("beach1.jpg", "", 2823));
+        alien3.addFile(new File("beach2.jpg", "", 7132));
+        alien3.addFile(new File("beach-tracks.jpg", "", 1823));
+        alien3.addFile(new File("squirrel.jpg", "", 1732));
+        alien3.addFile(new File("checkinthebox.jpg", "", 3721));
+        alien3.addFile(new File("itsover9000.jpg", "", 2712));                
     }
     /**
      * Get the current opened directory
@@ -114,10 +177,5 @@ public class Filesystem
             }
         }
         return directory;
-    }
-    public static void print()
-    {
-        for(Directory dir : currentDirectory.getChilds()){
-       System.out.println(dir);}
     }
 }

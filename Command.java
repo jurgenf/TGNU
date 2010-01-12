@@ -125,7 +125,15 @@ public class Command
         else
         {
             Filesystem.getCurrentDirectory();
-            Filesystem.findDirectoryByName(options);
+            Directory find = Filesystem.findDirectoryByName(options);
+            if(find != null)
+            {
+                Filesystem.setCurrentDirectory(find);
+            }
+            else
+            {
+                Terminal.print("je foutmelding, bijv. Sorry deze directory bestaat niet");
+            }
         }
     }
     
