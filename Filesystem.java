@@ -36,19 +36,19 @@ public class Filesystem
         Directory www = new Directory("www", mainframeVar);
 
         //addChilds
-        root.addChild(new Directory("home", root));
-        home.addChild(new Directory(GameController.getUsername(), home));        
-        root.addChild(new Directory("mainframe", root));
-        mainframe.addChild(new Directory("etc", mainframe));
-        mainframe.addChild(new Directory("home", mainframe));
-        mainframe.addChild(new Directory("bin", mainframe));
-        mainframe.addChild(new Directory("tmp", mainframe));
-        mainframe.addChild(new Directory("var", mainframe));
-        mainframeHome.addChild(new Directory("earl", "My Name=", mainframeHome));
-        mainframeHome.addChild(new Directory("thomas", "1337", mainframeHome));
-        mainframeHome.addChild(new Directory("et", "Go Home", mainframeHome));
-        mainframeHome.addChild(new Directory("henry", "Frankenstein", mainframeHome)); 
-        mainframeVar.addChild(new Directory("www", mainframeVar));
+        root.addChild(home);
+        home.addChild(userdir);        
+        root.addChild(mainframe);
+        mainframe.addChild(mainframeEtc);
+        mainframe.addChild(mainframeHome);
+        mainframe.addChild(mainframeBin);
+        mainframe.addChild(mainframeTmp);
+        mainframe.addChild(mainframeVar);
+        mainframeHome.addChild(earl);
+        mainframeHome.addChild(thomas);
+        mainframeHome.addChild(et);
+        mainframeHome.addChild(henry); 
+        mainframeVar.addChild(www);
             
         //The Files
         mainframeEtc.addFile(new File("passwords", "user:thomas \npassword:1337 \nuser:et \npassword:Go Home \nuser:earl \npassword:My Name= \nuser:henry \npassword:Frankenstein", 10));
@@ -101,5 +101,10 @@ public class Filesystem
             }
         }
         return directory;
+    }
+    public static void print()
+    {
+        for(Directory dir : currentDirectory.getChilds()){
+       System.out.println(dir);}
     }
 }
