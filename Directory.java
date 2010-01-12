@@ -94,6 +94,16 @@ public class Directory
     }
     
     /**
+     * Get the parent of this directory
+     * 
+     * @return  Directory parent    The parent directory
+     */
+    public Directory getParent()
+    {
+        return parent;
+    }
+    
+    /**
      * Get the name of this directory
      * 
      * @return  String name     The name of the directory.
