@@ -70,10 +70,22 @@ public class Command
             Terminal.print("Unknown Command.");
         }
         else if(commands == Commands.HELP) {
-                printHelp();
+            if(words.size() == 2) { 
+                showCommandHelp(words.get(1));
+            }
+            else
+            {
+                showAllCommands();
+            }
         }
        else if (commands == Commands.COPY) {
-          cp(words.get(1),words.get(2));
+          if(words.size() == 3) { 
+              cp(words.get(1),words.get(2));
+          }
+          else {
+            Terminal.print("Error: Insufficient parameters.");
+            Terminal.print("For more information about the usage of this command type \"help cp\"");
+          }
         }
         else if (commands == Commands.CD) {
             if(words.size() == 2){  
@@ -83,9 +95,6 @@ public class Command
             }
         }
         else if (commands == Commands.CAT) {
-           //printHelp();
-        }
-        else if (commands == Commands.UPTIME) {
            //printHelp();
         }
         else if (commands == Commands.LIST) {
@@ -100,20 +109,25 @@ public class Command
     /**
      * Print all valid commands to System.out.
      */
-    public static void showAll() 
+    public static void showAllCommands() 
     {
-        for(String command : validCommands.keySet()) {
-            System.out.print(command + "  ");
+        for(String existingCommand : validCommands.keySet()) {
+            Terminal.printInline(existingCommand + "  ");
         }
-        System.out.println();
-    }    
+        Terminal.print("");
+        Terminal.print("for more information about a command type help [command]");
+    }
     
-    /**
-     * Method to show all the available commands.
-     */
-    public static void printHelp()
+    public static void showCommandHelp(String command)
     {
-        showAll();
+        //check trough all available help messages to find the one the user wants more information abou
+        if(command.equals("help")) Terminal.print("There is no help about help because this would destroy the earth, just use help without a parameter");
+        else if(command.equals("cp")) Terminal.print("WRITE THIS!!!");
+        else if(command.equals("cd")) Terminal.print("WRITE THIS!!!");
+        else if(command.equals("cat")) Terminal.print("WRITE THIS!!!");
+        else if(command.equals("ls")) Terminal.print("WRITE THIS!!!");
+        else if(command.equals("exit")) Terminal.print("This command exits the game/shell.");
+        else Terminal.print("Sorry, there is no help topic found for the that command.");
     }
     
     public static void cd(String options) 
@@ -161,35 +175,27 @@ public class Command
     {
         for(Directory dir : Filesystem.getCurrentChilds())
         {
-            Terminal.print(dir.getName() + " [dir]");
+            Terminal.print("[dir]     " + dir.getName());
         }
         for(File file : Filesystem.getCurrentFiles())
         {
-            Terminal.print(file.getName() + " " + file.getSize() + " kb [file]");
+            Terminal.print("[file]    " + file.getName() + "    " + file.getSize() + " kb");
         }
     }
     
     public static void cp(String param1, String param2)
     {
-        if(param1 == null || param2 == null)
-        {
-            Terminal.print("insufficient parameters.");
-            //print more help
-        }
-        else
-        {
-            if(param2.equals("/home/"+GameController.getUsername()))
-            {
-                File searchResult = Filesystem.findFileByName(param1);
-                if(searchResult != null)
-                {
-                    Filesystem.copyFile(searchResult);
-                 }
-                 else
-                 {
-                     Terminal.print("The source file you specified can not be found.");
-                 }
+        File searchResult = Filesystem.findFileByName(param1);
+        if(searchResult != null) {
+            if(param2.equals("/home/"+GameController.getUsername())) {
+                Filesystem.copyFile(searchResult);
+            }
+             else {
+                Terminal.print("Error: You don't have the required permissions to copy the file " + param1 + " to the folder " + param2);     
              }
-         }
+        }
+        else {
+            Terminal.print("Error: The source file you specified can not be found.");
+        }  
     }
 }
