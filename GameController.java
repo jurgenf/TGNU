@@ -26,7 +26,6 @@ public class GameController
         Terminal.print("");
         Terminal.print("Please enter your username: ");
         username = Terminal.askUsername();
-        Filesystem.addChilds();
         this.initTheGame();
     }
 
@@ -47,6 +46,9 @@ public class GameController
         Terminal.print("Put the collected data in your home folder (/home/"+username+"/)");
         Terminal.print("Type 'help' for more info about the commands you can use.");
        
+        //create the filesystem
+        Filesystem.createFilesystem();
+        
         //load in the commands that can be used.
         Command.initCommandList();
         

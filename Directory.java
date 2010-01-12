@@ -62,6 +62,19 @@ public class Directory
         files = new ArrayList<File>();
     }
     
+    /**
+     * get the ArrayList<Directory> childs
+     * 
+     * @return  return the ArrayList<Directory> childs
+     */
+    public ArrayList<Directory> getChilds()
+    {
+        return childs;
+    }
+    
+    /**
+     * Print the names of the childs
+     */
      public void printChilds()
     {
         for(Directory dir : childs)
