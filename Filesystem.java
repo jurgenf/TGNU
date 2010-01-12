@@ -241,4 +241,12 @@ public class Filesystem
         }
         return directory;
     }
+    
+    /**
+     * print the childs of the current directory
+     */
+    public static void printCurrentChilds()
+    {
+        currentDirectory.printChilds();
+    }
 }

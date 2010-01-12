@@ -9,4 +9,6 @@ comment2.text=\nSet\ the\ current\ opened\ directory\n\n@param\ \ \ Directory\ d
 comment3.params=name
 comment3.target=Directory\ findDirectoryByName(String)
 comment3.text=\nFind\ an\ object\ of\ the\ class\ Directory\ with\ a\ specific\ name\n\n@param\ \ \ String\ name\ \ \ \ \ The\ name\ of\ the\ directory\ one\ searches\n@return\ \ directory\ \ \ \ \ \ \ The\ object\ of\ the\ class\ Directory.\ returns\ null\ if\ not\ found.\n\n
-numComments=4
+comment4.target=void\ printCurrentChilds()
+comment4.text=\nprint\ the\ childs\ of\ the\ current\ directory\n\n
+numComments=5

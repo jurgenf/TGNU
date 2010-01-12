@@ -89,7 +89,7 @@ public class Command
            //printHelp();
         }
         else if (commands == Commands.LIST) {
-           // printHelp();
+                ls();
         }
        else if (commands == Commands.QUIT) {
            wantToQuit = true;
@@ -128,25 +128,39 @@ public class Command
             Directory find = Filesystem.findDirectoryByName(options);
             if(find != null)
             {
-                Filesystem.setCurrentDirectory(find);
+                if(find.getPassword() == null)
+                {
+                    Terminal.print("test");
+                    //Terminal.print(Terminal.getPassPrompt());
+                    Filesystem.setCurrentDirectory(find);
+                }else{ 
+                    
+                    String input = Terminal.getUserInput();
+                    String password = find.getPassword();
+                    
+                    if(input.equals(password)){
+                        Filesystem.setCurrentDirectory(find);
+                       // Terminal.setPrompt(Terminal.getPrompt());
+                     }else{
+                        Terminal.print("Bad password");
+                     }
+                }
+                //Terminal.print(Filesystem.getCurrentDirectory().getPassword());
+            }
+            else if(options.equals(".."))
+            {
+                
             }
             else
             {
-                Terminal.print("je foutmelding, bijv. Sorry deze directory bestaat niet");
+                Terminal.print("Sorry no such file or directory");
             }
         }
     }
     
-    public static void cp(String options) 
+    public static void ls() 
     {
-        if(options == null)
-        {
-            Terminal.print("faal.");
-        }
-        else
-        {
-            Terminal.print("test");
-        }
+        Filesystem.printCurrentChilds();
     }
     
 }

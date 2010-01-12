@@ -12,7 +12,7 @@ public class Terminal
 
     private static Scanner terminalReader = new Scanner(System.in);
     private static String prompt = "> ";
-    
+    private static String passprompt = "password: ";
 
     
     /**
@@ -82,6 +82,22 @@ public class Terminal
     public static String getPrompt() 
     {
         return prompt;
+    }
+    
+    /**
+     * 
+     * 
+     */
+    public static String getPassPrompt()
+    {
+        return passprompt;
+    }
+    
+    public static String getUserInput() 
+    {
+            //setPrompt(getPassPrompt());
+            String inputLine = terminalReader.nextLine();
+            return inputLine;
     }
     
     
