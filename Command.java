@@ -187,7 +187,7 @@ public class Command
     {
         File searchResult = Filesystem.findFileByName(param1);
         if(searchResult != null) {
-            if(param2.equals("/home/"+GameController.getUsername())) {
+            if(param2.equals("/home/"+GameController.getUsername()) || param2.equals("/home/" + GameController.getUsername() + "/")) {
                 Filesystem.copyFile(searchResult);
             }
              else {

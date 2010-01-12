@@ -41,7 +41,7 @@ public class GameController
         //this.hackCinematic();
         
         Terminal.print("Welcome to TGNU, the game now starts!");
-        Terminal.print("You have broken into the fileserver of Area51, the files are mounted in the folder 'mainframe'");
+        Terminal.print("You have broken into the fileserver of Area51, the files are mounted in the folder '/mnt/mainframe/'");
         Terminal.print("Your task is to seek out and copy classified data about aliens to your local harddrive");
         Terminal.print("Put the collected data in your home folder (/home/"+username+"/)");
         Terminal.print("Type 'help' for more info about the commands you can use.");
