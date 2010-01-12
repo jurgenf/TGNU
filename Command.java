@@ -124,7 +124,8 @@ public class Command
         }
         else
         {
-            Terminal.print("test");
+            Filesystem.getCurrentDirectory();
+            Filesystem.findDirectoryByName(options);
         }
     }
     

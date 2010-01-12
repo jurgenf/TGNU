@@ -10,9 +10,7 @@ public class Filesystem
     private static Directory root = new Directory("/");
     //Set the default Directory to root   
     private static Directory currentDirectory = root;
-        //Set exits for all maps
-       // filesystem.setExit("mainframe", mainframe);
-       // filesystem.setExit("home", mainframeHome);
+
            
     /**
      * Add the Child directories to their parents
@@ -20,35 +18,50 @@ public class Filesystem
     public static void createFilesystem()
     {
         //De directories
-        Directory root = new Directory("/");
         Directory home = new Directory("home", root);
         Directory userdir = new Directory(GameController.getUsername(), home);
+        Directory mnt = new Directory("mnt", root);
+        
+        Directory boot = new Directory("mnt", root);
+        Directory bin = new Directory("bin", "1203Q@)93204830943201sadfkj13", root);
+        Directory etc = new Directory("bin", "1203Q@)93204830943201sadfkj13", root);
+        Directory var = new Directory("var", "1203Q@)93204830943201sadfkj13", root);
+        Directory tmp = new Directory("tmp", "1203Q@)93204830943201sadfkj13", root);
+        
+        //De directories van de area51 server
         Directory mainframe = new Directory("mainframe", root);
         Directory mainframeEtc = new Directory("etc", mainframe);
         Directory mainframeBin = new Directory("bin", mainframe);
         Directory mainframeHome = new Directory("home", mainframe);
         Directory mainframeTmp = new Directory("tmp", mainframe);
         Directory mainframeVar = new Directory("var", mainframe);
+        Directory mainframeMedia = new Directory("media", mainframe);
+        Directory mainframeBoot = new Directory("boot", mainframe);
+        Directory www = new Directory("www", mainframeVar);
         Directory earl = new Directory("earl", "My Name=", mainframeHome);
         Directory thomas = new Directory("thomas", "1337", mainframeHome);
         Directory et = new Directory("et", "Go Home", mainframeHome);
         Directory henry = new Directory("henry", "Frankenstein", mainframeHome);    
-        Directory www = new Directory("www", mainframeVar);
+
 
         //addChilds
         root.addChild(home);
         home.addChild(userdir);        
-        root.addChild(mainframe);
+        root.addChild(mnt);
+        mnt.addChild(mainframe);
         mainframe.addChild(mainframeEtc);
         mainframe.addChild(mainframeHome);
         mainframe.addChild(mainframeBin);
         mainframe.addChild(mainframeTmp);
         mainframe.addChild(mainframeVar);
+        mainframe.addChild(mainframeMedia);
+        mainframe.addChild(mainframeBoot);
+        mainframeVar.addChild(www);
         mainframeHome.addChild(earl);
         mainframeHome.addChild(thomas);
         mainframeHome.addChild(et);
         mainframeHome.addChild(henry); 
-        mainframeVar.addChild(www);
+        
             
         //The Files
         mainframeEtc.addFile(new File("passwords", "user:thomas \npassword:1337 \nuser:et \npassword:Go Home \nuser:earl \npassword:My Name= \nuser:henry \npassword:Frankenstein", 10));
