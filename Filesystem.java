@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
  * This class makes it possible to create a filesystem by making directories and files 
  * and link them together
@@ -9,9 +9,9 @@
 public class Filesystem
 {
     private static Directory root = new Directory("/");
+    private static Directory userdir;
     //Set the default Directory to root   
     private static Directory currentDirectory = root;
-
            
     /**
      * Add the Child directories to their parents
@@ -20,12 +20,12 @@ public class Filesystem
     {
         //De directories
         Directory home = new Directory("home", root);
-        Directory userdir = new Directory(GameController.getUsername(), home);
+        userdir = new Directory(GameController.getUsername(), home);
         Directory mnt = new Directory("mnt", root);
-        
-        Directory boot = new Directory("mnt", root);
+
+        Directory boot = new Directory("boot", "1203Q@)93204830943201sadfkj13", root);
         Directory bin = new Directory("bin", "1203Q@)93204830943201sadfkj13", root);
-        Directory etc = new Directory("bin", "1203Q@)93204830943201sadfkj13", root);
+        Directory etc = new Directory("etc", "1203Q@)93204830943201sadfkj13", root);
         Directory var = new Directory("var", "1203Q@)93204830943201sadfkj13", root);
         Directory tmp = new Directory("tmp", "1203Q@)93204830943201sadfkj13", root);
         
@@ -180,7 +180,7 @@ public class Filesystem
         research3.addFile(new File("201001Vlissingen", "Strange winds and extremely low temperatures were measured at Vlissingen, we are gathering intel about the weatherconditions now, it might be caused by aliens", 42));
         research3.addFile(new File("200912Area", "Server crashdeleted our data. Technicians re trying to retreive our data.", 12));
         research4.addFile(new File("2009EasterIsland", "I'm posted at EasterIsland for a year, to investigate the unknown glowing piece of rock which landed there. I will post my results next week", 25));
-        
+        research4.addFile(new File("201001Vlissingen", "Strange entitys detected in offices in a local university", 27));
         
         acpi.addFile(new File("ejectbtn.sh", "", 20));
         acpi.addFile(new File("nextbtn.sh", "", 12));
@@ -224,6 +224,16 @@ public class Filesystem
     }
     
     /**
+     * Set the current opened directory to the user's directory (/home/"username") and copy the file to the list files.
+     * 
+     * @param   File subject    The file which needs to be copied to the userdirectory
+     */
+    public static void copyFile(File subject)
+    {
+        userdir.addFile(subject);
+    }
+    
+    /**
      * Find an object of the class Directory with a specific name
      * 
      * @param   String name     The name of the directory one searches
@@ -243,10 +253,41 @@ public class Filesystem
     }
     
     /**
-     * print the childs of the current directory
+     * Find an object of the class File with a specific name
+     * 
+     * @param   String name     The name of the file one searches
+     * @return  file            The object of the class File. returns null if not fount.
      */
-    public static void printCurrentChilds()
+    public static File findFileByName(String name)
     {
-        currentDirectory.printChilds();
+        File file = null;
+        for(File searchFile : currentDirectory.getFiles())
+        {
+            if(searchFile.getName().equals(name) == true)
+            {
+                file = searchFile;
+            }
+        }
+        return file;
+    }
+    
+    /**
+     * Get the childs of the current directory
+     * 
+     * @return  return the ArrayList<Directory>
+     */
+    public static ArrayList<Directory> getCurrentChilds()
+    {
+        return currentDirectory.getChilds();
+    }
+    
+    /**
+     * Get the files of the current directory
+     * 
+     * @return  return the ArrayList<File>
+     */
+    public static ArrayList<File> getCurrentFiles()
+    {
+        return currentDirectory.getFiles();
     }
 }

@@ -18,7 +18,7 @@ public class Command
         validCommands.put("cd", Commands.CD);
         validCommands.put("cat", Commands.CAT);
         validCommands.put("uptime", Commands.UPTIME);
-        validCommands.put("ls", Commands.LIST);  
+        validCommands.put("ls", Commands.LIST);
     }
     
     /**
@@ -72,14 +72,14 @@ public class Command
         else if(commands == Commands.HELP) {
                 printHelp();
         }
-        else if (commands == Commands.COPY) {
-              // printHelp();
+       else if (commands == Commands.COPY) {
+          cp(words.get(1),words.get(2));
         }
         else if (commands == Commands.CD) {
-            if(words.size() != 1){  
+            if(words.size() == 2){  
                 cd(words.get(1));
             }else{
-                Terminal.print("You didn't give any parameters.");
+                Terminal.print("Wrong parameter");
             }
         }
         else if (commands == Commands.CAT) {
@@ -124,7 +124,6 @@ public class Command
         }
         else
         {
-            Filesystem.getCurrentDirectory();
             Directory find = Filesystem.findDirectoryByName(options);
             if(find != null)
             {
@@ -134,7 +133,7 @@ public class Command
                     //Terminal.print(Terminal.getPassPrompt());
                     Filesystem.setCurrentDirectory(find);
                 }else{ 
-                    
+                    Terminal.print("enter password:");
                     String input = Terminal.getUserInput();
                     String password = find.getPassword();
                     
@@ -149,7 +148,7 @@ public class Command
             }
             else if(options.equals(".."))
             {
-                
+                Filesystem.setCurrentDirectory(Filesystem.getCurrentDirectory().getParent());
             }
             else
             {
@@ -160,7 +159,37 @@ public class Command
     
     public static void ls() 
     {
-        Filesystem.printCurrentChilds();
+        for(Directory dir : Filesystem.getCurrentChilds())
+        {
+            Terminal.print(dir.getName() + " [dir]");
+        }
+        for(File file : Filesystem.getCurrentFiles())
+        {
+            Terminal.print(file.getName() + " " + file.getSize() + " kb [file]");
+        }
     }
     
+    public static void cp(String param1, String param2)
+    {
+        if(param1 == null || param2 == null)
+        {
+            Terminal.print("insufficient parameters.");
+            //print more help
+        }
+        else
+        {
+            if(param2.equals("/home/"+GameController.getUsername()))
+            {
+                File searchResult = Filesystem.findFileByName(param1);
+                if(searchResult != null)
+                {
+                    Filesystem.copyFile(searchResult);
+                 }
+                 else
+                 {
+                     Terminal.print("The source file you specified can not be found.");
+                 }
+             }
+         }
+    }
 }

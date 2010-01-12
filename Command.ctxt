@@ -17,4 +17,6 @@ comment5.text=\nMethod\ to\ show\ all\ the\ available\ commands.\n\n
 comment6.params=options
 comment6.target=void\ cd(String)
 comment7.target=void\ ls()
-numComments=8
+comment8.params=param1\ param2
+comment8.target=void\ cp(String,\ String)
+numComments=9

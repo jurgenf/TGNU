@@ -84,15 +84,6 @@ public class Terminal
         return prompt;
     }
     
-    /**
-     * 
-     * 
-     */
-    public static String getPassPrompt()
-    {
-        return passprompt;
-    }
-    
     public static String getUserInput() 
     {
             //setPrompt(getPassPrompt());

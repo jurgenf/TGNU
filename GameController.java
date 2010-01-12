@@ -38,7 +38,7 @@ public class GameController
         Terminal.setPrompt(username+"@h4ckst4ti0n> ");
         // !!!! DO NOT SWITCH TO ACTIVATE THIS IN FINAL !!!!
         //Terminal.print("!!! hacking scene skipped, please activate this in final !!!");
-        this.hackCinematic();
+        //this.hackCinematic();
         
         Terminal.print("Welcome to TGNU, the game now starts!");
         Terminal.print("You have broken into the fileserver of Area51, the files are mounted in the folder 'mainframe'");

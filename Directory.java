@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 /**
  * An object of the class Directory represents a directory of the filesystem.
  * 
@@ -13,7 +12,6 @@ public class Directory
     private ArrayList<Directory> childs;
     private ArrayList<File> files;
     private Directory parent;
-    private HashMap<String, Directory> exits;
 
     /**
      * The constructor creates an object of the class Directory.
@@ -30,7 +28,6 @@ public class Directory
         this.parent = parent;
         childs = new ArrayList<Directory>();
         files = new ArrayList<File>();
-        exits = new HashMap<String, Directory>();
     }
     
     /**
@@ -73,26 +70,15 @@ public class Directory
     }
     
     /**
-     * Print the names of the childs
+     * Get the ArrayList<File> files
+     * 
+     * @return  return the ArrayList<File> files
      */
-     public void printChilds()
+    public ArrayList<File> getFiles()
     {
-        for(Directory dir : childs)
-        {
-            Terminal.print(dir.getName());
-        }
+        return files;
     } 
-    
-    public void setExit(String direction, Directory neighbor)
-    {
-        exits.put(direction, neighbor);
-    }
-    
-    public Directory getExit(String direction) 
-    {
-        return exits.get(direction);
-    }
-    
+
     /**
      * Get the parent of this directory
      * 
@@ -141,16 +127,5 @@ public class Directory
     public void addFile(File file)
     {
         files.add(file);
-    }
-     
-    /**
-     * 
-     */
-    public void printFiles()
-    {
-        for(File file : files)
-        {
-            Terminal.print(file.getName());
-        }
     }
 }
