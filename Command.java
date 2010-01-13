@@ -152,43 +152,33 @@ public class Command
     {
             if(options.equals("roadhouse") == false && options.equals("..") == false)
             {
-                Directory find = Filesystem.findDirectoryByName(options);
-                if(find != null)
+                Directory found = Filesystem.findDirectoryByName(options);
+                if(found != null)
                 {
-<<<<<<< HEAD
-                    if(find.getPassword() == null)
+                    if(found.getPassword() == null)
                     {
-=======
-                    Terminal.print("test");
-                    //Terminal.print(Terminal.getPassPrompt());
-                    Filesystem.setCurrentDirectory(find);
-                }else{ 
-                    Terminal.print("enter password:");
-                    String input = Terminal.getRawUserInput();
-                    String password = find.getPassword();
-                    
-                    if(input.equals(password)){
->>>>>>> b42c9efe30d7996ebb61aa178e88e95efd35f373
-                        Filesystem.setCurrentDirectory(find);
-                    }
+                    Filesystem.setCurrentDirectory(found);
+                }
                     else{ 
                         Terminal.printInline("Password: ");
-                        String input = Terminal.getUserInput();
-                        String password = find.getPassword();
+                        String input = Terminal.getRawUserInput();
+                        String password = found.getPassword();
                         
                         if(input.equals(password)){
-                            Filesystem.setCurrentDirectory(find);
+                            Filesystem.setCurrentDirectory(found);
                         }
-                        else{
+                        else
+                        {
                             Terminal.print("Sorry, try again");
                         }
                     }
-                }
+                }                
                 else
                 {
                     Terminal.print("Sorry no such file or directory");
                 }
             }
+        
              else if(options.equals("roadhouse") == true)
               {
                   GameController.gameOver();
