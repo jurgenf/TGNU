@@ -1,12 +1,13 @@
 #BlueJ class context
-comment0.target=GameController()
-comment0.text=\nConstructor\ for\ objects\ of\ class\ GameController\n\n
+comment0.params=args
+comment0.target=void\ main(String[])
+comment0.text=\nthe\ main\ method\ starts\ the\ game\ by\ printing\ the\ welcome\ tekst\ and\ call\ the\ initialize\ method.\n@param\ args\ arguments\ that\ where\ passed\ from\ the\ command\n\n
 comment1.target=void\ initTheGame()
-comment1.text=\nInitialize\ the\ game\!\n\n\n
+comment1.text=\nInitialize\ the\ game\!\nThis\ method\ start\ the\ game\ by\ showing\ the\ intro\ and\ initializes\ all\ components\nAfter\ all\ components\ are\ loaded\ the\ welcome\ message\ is\ showed.\n\n
 comment2.target=void\ hackCinematic()
-comment2.text=\nPlay\ a\ cinematic\ where\ the\ user\ sees\ itself\ hacking\ the\ Area51\ mainframe\n\n\n
+comment2.text=\nPlay\ a\ cinematic\ where\ the\ user\ sees\ itself\ hacking\ the\ Area51\ mainframe\n\n
 comment3.target=String\ getUsername()
-comment3.text=\nReturn\ the\ players\ username\n\n@return\ the\ players\ username\n\n
+comment3.text=\nReturn\ the\ players\ username\n@return\ the\ players\ username\n\n
 comment4.params=sleepTime
 comment4.target=void\ sleep(int)
 comment4.text=\nsleep\ the\ program\nused\ to\ simulate\ the\ feeling\ of\ the\ mainframe/computer\ processing\ the\ input\n\n@param\ \ \ int\ the\ time\ to\ sleep\ in\ miliseconds\n\n

@@ -2,22 +2,21 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 /**
- * This class implements a terminal from wich the program talks to the terminal.
+ * This class implements the terminal the user works in
+ * This class will communicate with the real terminal from the user (the windows cmd or the linux terminal emulator for example)
  * 
- * @author Jurgen Franse <fran0060@hz.nl>
- * @version 0.2
+ * @author TGNU team
+ * @version 1.0
  * */
 public class Terminal
 {
-
+    //initialize the class variables and assign there default value
     private static Scanner terminalReader = new Scanner(System.in);
     private static String prompt = "> ";
-    private static String passprompt = "password: ";
 
     
     /**
      * Print a line of text to the terminal
-     * 
      * @param  text   the text to print to the terminal
      */
     public static void print(String text)
@@ -26,8 +25,7 @@ public class Terminal
     }
     
     /**
-     * Print a line of tekst without printing a newline.
-     * 
+     * Print a line of text without printing a newline.
      * @param   text   the text to print to the terminal
      */    
     public static void printInline(String text)
@@ -37,7 +35,6 @@ public class Terminal
     
     /**
      * Print a line of text to the terminal as it was typed (typewriter effect)
-     * 
      * @param  text   the text to print to the terminal
      */
     public static void printAsTyped(String text)
@@ -52,14 +49,13 @@ public class Terminal
     }
 
     /**
-     * Return the username the user logs in with and return it
-     * 
+     * Ask the user to fill in a username, clean it up and return it.
      * @return  the username the user choosed
      */    
     public static String askUsername() 
     {
-        System.out.print(prompt);
-        String username = terminalReader.nextLine().trim().toLowerCase();
+        Terminal.printInline(prompt);
+        String username = terminalReader.nextLine().trim().toLowerCase().replace(' ','-');
         return username;
     }  
     
@@ -83,24 +79,26 @@ public class Terminal
     {
         return prompt;
     }
-    
-    public static String getUserInput() 
+   
+    /**
+     * Get the text the user has typed in the terminal and return it.
+     * @return  a String containing the text the user has typed.
+     */
+    public static String getRawUserInput() 
     {
-            //setPrompt(getPassPrompt());
             String inputLine = terminalReader.nextLine();
             return inputLine;
     }
     
     
     /**
-     * Return the user input from the terminal as a ArrayList containing all words that where typed in the console.
-     * 
+     * Get the user input and process it so the processCommand method can interpret the command and the arguments.
      * @return  an ArrayList containing strings that where typed into the terminal
      */    
     public static boolean getInput() 
     {
         System.out.print(prompt);
-        String inputLine = terminalReader.nextLine().trim().toLowerCase();
+        String inputLine = Terminal.getRawUserInput();
 
         String[] wordArray = inputLine.split(" ");
 

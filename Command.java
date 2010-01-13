@@ -162,7 +162,7 @@ public class Command
                     Filesystem.setCurrentDirectory(find);
                 }else{ 
                     Terminal.print("enter password:");
-                    String input = Terminal.getUserInput();
+                    String input = Terminal.getRawUserInput();
                     String password = find.getPassword();
                     
                     if(input.equals(password)){
