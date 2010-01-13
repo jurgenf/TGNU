@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Command
 {
-    private static HashMap<String, Commands> validCommands;
+    private static HashMap<String, CommandString> validCommands;
 
     /**
      * Initialize the HashMap for the validcommands and
@@ -11,14 +11,14 @@ public class Command
      */
     public static void initCommandList()
     {
-        validCommands = new HashMap<String, Commands>();
-        validCommands.put("help", Commands.HELP);
-        validCommands.put("cp", Commands.COPY);
-        validCommands.put("exit", Commands.QUIT);
-        validCommands.put("cd", Commands.CD);
-        validCommands.put("cat", Commands.CAT);
-        validCommands.put("ls", Commands.LIST);
-        validCommands.put("rm", Commands.RM);
+        validCommands = new HashMap<String, CommandString>();
+        validCommands.put("help", CommandString.HELP);
+        validCommands.put("cp", CommandString.COPY);
+        validCommands.put("exit", CommandString.QUIT);
+        validCommands.put("cd", CommandString.CD);
+        validCommands.put("cat", CommandString.CAT);
+        validCommands.put("ls", CommandString.LIST);
+        validCommands.put("rm", CommandString.RM);
     }
     
     /**
@@ -36,14 +36,14 @@ public class Command
      * @return The CommandWord correspondng to commandWord, or UNKNOWN
      *         if it is not a valid command word.
      */
-    public static Commands getCommand(String commandWord)
+    public static CommandString getCommand(String commandWord)
     {
-        Commands command = validCommands.get(commandWord);
+        CommandString command = validCommands.get(commandWord);
         if(command != null) {
             return command;
         }
         else {
-            return Commands.UNKNOWN;
+            return CommandString.UNKNOWN;
         }
     }
 
@@ -64,12 +64,12 @@ public class Command
     {
         boolean wantToQuit = false;
         
-        Commands commands = getCommand(words.get(0));       
+        CommandString commands = getCommand(words.get(0));       
         
-        if(commands == Commands.UNKNOWN) {
+        if(commands == CommandString.UNKNOWN) {
             Terminal.print("Unknown Command.");
         }
-        else if(commands == Commands.HELP) {
+        else if(commands == CommandString.HELP) {
             if(words.size() == 2) { 
                 showCommandHelp(words.get(1));
             }
@@ -78,7 +78,7 @@ public class Command
                 showAllCommands();
             }
         }
-       else if (commands == Commands.COPY) {
+       else if (commands == CommandString.COPY) {
           if(words.size() == 3) { 
               cp(words.get(1),words.get(2));
           }
@@ -87,14 +87,14 @@ public class Command
             Terminal.print("For more information about the usage of this command type \"help cp\"");
           }
         }
-        else if (commands == Commands.CD) {
+        else if (commands == CommandString.CD) {
             if(words.size() == 2){  
                 cd(words.get(1));
             }else{
                 Terminal.print("For more information about the usage of this command type \"help cd\"");
             }
         }
-        else if (commands == Commands.CAT) {
+        else if (commands == CommandString.CAT) {
            if(words.size() == 2){
                cat(words.get(1));
             }
@@ -102,7 +102,7 @@ public class Command
                 Terminal.print("For more information about the usage of this command type \"help cat\"");
             }
         }
-        else if (commands == Commands.LIST) {
+        else if (commands == CommandString.LIST) {
             if(words.size() == 1){
                 ls();
             }
@@ -110,7 +110,7 @@ public class Command
                 Terminal.print("For more information about the usage of this command type \"help ls\"");
             }
         }
-        else if (commands == Commands.RM) {
+        else if (commands == CommandString.RM) {
             if(words.size() == 2){
                 rm(words.get(1));
             }
@@ -118,7 +118,7 @@ public class Command
                 Terminal.print("For more information about the usage of this command type \"help rm\"");
             }
         }
-       else if (commands == Commands.QUIT) {
+       else if (commands == CommandString.QUIT) {
            wantToQuit = true;
         } 
        return wantToQuit;

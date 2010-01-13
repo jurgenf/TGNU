@@ -51,11 +51,13 @@ public class GameController
         Command.initCommandList();
         
         //print the welcome message
+        Terminal.print("");
         Terminal.print("Welcome to TGNU, the game now starts!");
         Terminal.print("You have broken into the fileserver of Area51, the files are mounted in the folder '/mnt/mainframe/'");
         Terminal.print("Your task is to seek out and copy classified data about aliens to your local harddrive");
         Terminal.print("Put the collected data in your home folder (/home/"+username+"/)");
         Terminal.print("Type 'help' for more info about the commands you can use.");
+        Terminal.print("");
         
         // this boolean stays false as long as the user does not type 'exit'
         boolean exit = false;
@@ -138,6 +140,7 @@ public class GameController
         Terminal.print(" /¯¯¯¯¯\\'     /¯¯¯¯¯| |¯¯¯\\/¯¯¯|  /¯x¯¯\\           /¯¯¯¯¯\\ \\¯¯¯\\    /¯¯¯/' /¯x¯¯\\ |¯¯¯¯\\  ");
         Terminal.print("|   (/¯¯¯\\°  /     !     | |            '| |   (\\__/|         |     x    |'  \\     \\/      /  |   (\\__/||   x  <|'");
         Terminal.print(" \\_____/' /___/¯|__'| |.__|\\/|__.|  \\____\\           \\_____/     \\_____/ _'  \\____\\ |__|\\__\\");
+        sleep(2000);
         System.exit(1);
     }
 }

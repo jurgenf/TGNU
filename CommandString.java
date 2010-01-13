@@ -1,11 +1,8 @@
 
 /**
- * Write a description of class Commands here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+*
  */
-public enum Commands
+public enum CommandString
 {
     // A value for each command word, plus one for unrecognised
     // commands.
