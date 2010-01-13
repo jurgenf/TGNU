@@ -9,5 +9,5 @@ public enum Commands
 {
     // A value for each command word, plus one for unrecognised
     // commands.
-    HELP, COPY, QUIT, CD, CAT, UPTIME, LIST, UNKNOWN;
+    HELP, COPY, QUIT, CD, CAT, UPTIME, LIST, RM, UNKNOWN;
 }

@@ -19,6 +19,7 @@ public class Command
         validCommands.put("cat", Commands.CAT);
         validCommands.put("uptime", Commands.UPTIME);
         validCommands.put("ls", Commands.LIST);
+        validCommands.put("rm", Commands.RM);
     }
     
     /**
@@ -95,10 +96,23 @@ public class Command
             }
         }
         else if (commands == Commands.CAT) {
-           //printHelp();
+           if(words.size() == 2){
+               cat(words.get(1));
+            }
+            else{
+                Terminal.print("Wrong parameter");
+            }
         }
         else if (commands == Commands.LIST) {
                 ls();
+        }
+        else if (commands == Commands.RM) {
+            if(words.size() == 2){
+                rm(words.get(1));
+            }
+            else{
+                Terminal.print("Wrong parameter");
+            }
         }
        else if (commands == Commands.QUIT) {
            wantToQuit = true;
@@ -197,5 +211,49 @@ public class Command
         else {
             Terminal.print("Error: The source file you specified can not be found.");
         }  
+    }
+    
+    public static void cat(String options)
+    {
+        File searchResult = Filesystem.findFileByName(options);
+        if(searchResult != null) {
+            if(searchResult.getContent() != null){
+                Terminal.print(searchResult.getContent());
+            }
+            else{
+                Terminal.print("Sorry: cat can not view this content-type");
+            }
+        }
+        else{
+            Terminal.print("Error: The source file you specified can not be found.");
+        }
+    }
+    
+    public static void rm(String options)
+    {
+        if(Filesystem.getCurrentDirectory().getName().equals(GameController.getUsername()))
+        {
+            boolean removed = false;
+            for(File file : Filesystem.getCurrentFiles())
+            {
+                if(file.getName().equals(options))
+                {
+                    Filesystem.getCurrentFiles().remove(file);
+                    removed = true;
+                }
+            }
+            if(removed == true)
+            {
+                Terminal.print("File deleted");
+            }
+            else
+            {
+                Terminal.print("Error: The source file you specified can not be found.");
+            }
+        }
+        else
+        {
+            Terminal.print("Error: You are not authorized to make changes in this directory");
+        }
     }
 }
