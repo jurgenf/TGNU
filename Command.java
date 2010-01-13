@@ -17,7 +17,6 @@ public class Command
         validCommands.put("exit", Commands.QUIT);
         validCommands.put("cd", Commands.CD);
         validCommands.put("cat", Commands.CAT);
-        validCommands.put("uptime", Commands.UPTIME);
         validCommands.put("ls", Commands.LIST);
         validCommands.put("rm", Commands.RM);
     }
@@ -92,7 +91,7 @@ public class Command
             if(words.size() == 2){  
                 cd(words.get(1));
             }else{
-                Terminal.print("Wrong parameter");
+                Terminal.print("For more information about the usage of this command type \"help cd\"");
             }
         }
         else if (commands == Commands.CAT) {
@@ -100,18 +99,23 @@ public class Command
                cat(words.get(1));
             }
             else{
-                Terminal.print("Wrong parameter");
+                Terminal.print("For more information about the usage of this command type \"help cat\"");
             }
         }
         else if (commands == Commands.LIST) {
+            if(words.size() == 1){
                 ls();
+            }
+            else{
+                Terminal.print("For more information about the usage of this command type \"help ls\"");
+            }
         }
         else if (commands == Commands.RM) {
             if(words.size() == 2){
                 rm(words.get(1));
             }
             else{
-                Terminal.print("Wrong parameter");
+                Terminal.print("For more information about the usage of this command type \"help rm\"");
             }
         }
        else if (commands == Commands.QUIT) {
@@ -146,43 +150,50 @@ public class Command
     
     public static void cd(String options) 
     {
-        if(options == null)
-        {
-            Terminal.print("faal.");
-        }
-        else
-        {
-            Directory find = Filesystem.findDirectoryByName(options);
-            if(find != null)
+            if(options.equals("roadhouse") == false && options.equals("..") == false)
             {
-                if(find.getPassword() == null)
+                Directory find = Filesystem.findDirectoryByName(options);
+                if(find != null)
                 {
-                    Terminal.print("test");
-                    //Terminal.print(Terminal.getPassPrompt());
-                    Filesystem.setCurrentDirectory(find);
-                }else{ 
-                    Terminal.print("enter password:");
-                    String input = Terminal.getUserInput();
-                    String password = find.getPassword();
-                    
-                    if(input.equals(password)){
+                    if(find.getPassword() == null)
+                    {
                         Filesystem.setCurrentDirectory(find);
-                       // Terminal.setPrompt(Terminal.getPrompt());
-                     }else{
-                        Terminal.print("Bad password");
-                     }
+                    }
+                    else{ 
+                        Terminal.printInline("Password: ");
+                        String input = Terminal.getUserInput();
+                        String password = find.getPassword();
+                        
+                        if(input.equals(password)){
+                            Filesystem.setCurrentDirectory(find);
+                        }
+                        else{
+                            Terminal.print("Sorry, try again");
+                        }
+                    }
                 }
-                //Terminal.print(Filesystem.getCurrentDirectory().getPassword());
+                else
+                {
+                    Terminal.print("Sorry no such file or directory");
+                }
             }
+             else if(options.equals("roadhouse") == true)
+              {
+                  GameController.gameOver();
+              }
+            
             else if(options.equals(".."))
             {
-                Filesystem.setCurrentDirectory(Filesystem.getCurrentDirectory().getParent());
+                if(Filesystem.getCurrentDirectory().getParent() != null)
+                {
+                    Filesystem.setCurrentDirectory(Filesystem.getCurrentDirectory().getParent());
+                }
+                else
+                {
+                    Terminal.print("You are already at root");
+                }
             }
-            else
-            {
-                Terminal.print("Sorry no such file or directory");
-            }
-        }
+
     }
     
     public static void ls() 
@@ -202,9 +213,16 @@ public class Command
         File searchResult = Filesystem.findFileByName(param1);
         if(searchResult != null) {
             if(param2.equals("/home/"+GameController.getUsername()) || param2.equals("/home/" + GameController.getUsername() + "/")) {
-                Filesystem.copyFile(searchResult);
+                if(Filesystem.fileExists(searchResult) != true)
+                {
+                    Filesystem.copyFile(searchResult);
+                }
+                else
+                {
+                    Terminal.print("Error: File already exists in the directory /home/" + GameController.getUsername());
+                }
             }
-             else {
+            else {
                 Terminal.print("Error: You don't have the required permissions to copy the file " + param1 + " to the folder " + param2);     
              }
         }

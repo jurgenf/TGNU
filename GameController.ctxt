@@ -10,4 +10,5 @@ comment3.text=\nReturn\ the\ players\ username\n\n@return\ the\ players\ usernam
 comment4.params=sleepTime
 comment4.target=void\ sleep(int)
 comment4.text=\nsleep\ the\ program\nused\ to\ simulate\ the\ feeling\ of\ the\ mainframe/computer\ processing\ the\ input\n\n@param\ \ \ int\ the\ time\ to\ sleep\ in\ miliseconds\n\n
-numComments=5
+comment5.target=void\ gameOver()
+numComments=6

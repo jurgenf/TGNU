@@ -53,6 +53,7 @@ public class Filesystem
         Directory alien1 = new Directory("noalien4u", "Frankenstein", henry);
         Directory alien2 = new Directory("documents", "My Name=", earl);
         Directory alien3 = new Directory("phone", et);
+        Directory roadhouse = new Directory("roadhouse", alien3);
         Directory fake1 = new Directory("schedule", henry);
         Directory fake2 = new Directory("alienate", et);
         Directory fake3 = new Directory("work", thomas);
@@ -95,6 +96,7 @@ public class Filesystem
         et.addChild(fake2);
         thomas.addChild(research4);
         thomas.addChild(fake3);
+        alien3.addChild(roadhouse);
         
         //The Files
         mainframeEtc.addFile(new File("passwords", "user:thomas \npassword:1337 \nuser:et \npassword:Go Home \nuser:earl \npassword:My Name= \nuser:henry \npassword:Frankenstein", 10));
@@ -232,6 +234,24 @@ public class Filesystem
     public static void copyFile(File subject)
     {
         userdir.addFile(subject);
+    }
+    
+    /**
+     * Checks the list for the presence of the specified file
+     * 
+     * @return  return the boolean check
+     */
+    public static boolean fileExists(File subject)
+    {
+        boolean check = false;
+        for(File file : userdir.getFiles())
+        {
+            if(userdir.getFiles().contains(subject) == true)
+            {
+                check = true;
+            }
+        }
+        return check;
     }
     
     /**
