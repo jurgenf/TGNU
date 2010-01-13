@@ -155,8 +155,20 @@ public class Command
                 Directory find = Filesystem.findDirectoryByName(options);
                 if(find != null)
                 {
+<<<<<<< HEAD
                     if(find.getPassword() == null)
                     {
+=======
+                    Terminal.print("test");
+                    //Terminal.print(Terminal.getPassPrompt());
+                    Filesystem.setCurrentDirectory(find);
+                }else{ 
+                    Terminal.print("enter password:");
+                    String input = Terminal.getRawUserInput();
+                    String password = find.getPassword();
+                    
+                    if(input.equals(password)){
+>>>>>>> b42c9efe30d7996ebb61aa178e88e95efd35f373
                         Filesystem.setCurrentDirectory(find);
                     }
                     else{ 
