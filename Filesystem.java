@@ -200,7 +200,7 @@ public class Filesystem
         research3.addFile(new File("201001Vlissingen", "Strange winds and extremely low temperatures were measured at Vlissingen, we are gathering intel about the weatherconditions now, it might be caused by aliens", 42));
         research3.addFile(new File("200912Area", "Server crashdeleted our data. Technicians re trying to retreive our data.", 12));
         research4.addFile(new File("2009EasterIsland", "I'm posted at EasterIsland for a year, to investigate the unknown glowing piece of rock which landed there. I will post my results next week", 25));
-        research4.addFile(new File("201001Vlissingen", "Strange entitys detected in offices in a local university", 27));
+        research4.addFile(new File("201002Vlissingen", "Strange entitys detected in offices in a local university", 27));
         
         acpi.addFile(new File("ejectbtn.sh", null, 20));
         acpi.addFile(new File("nextbtn.sh", null, 12));

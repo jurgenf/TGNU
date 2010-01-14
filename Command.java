@@ -27,6 +27,7 @@ public class Command
         validCommands.put("ls", CommandString.LIST);
         validCommands.put("rm", CommandString.RM);
         validCommands.put("df", CommandString.DF);
+        validCommands.put("goal", CommandString.GOAL);
     }
     
     /**
@@ -134,6 +135,17 @@ public class Command
             if(words.size() == 1){
                 df();
             }
+            else{
+                Terminal.print("For more information about the usage of this command type \"help df\"");
+            }
+        }
+        else if (commands == CommandString.GOAL) {
+            if(words.size() == 1){
+                goal();
+            }
+            else{
+                Terminal.print("For more information about the usage of this command type \"help goal\"");
+            }
         }
        else if (commands == CommandString.QUIT) {
            wantToQuit = true;
@@ -162,10 +174,13 @@ public class Command
     {
         //check trough all available help messages to find the one the user wants more information abou
         if(command.equals("help")) Terminal.print("There is no help about help because this would destroy the earth, just use help without a parameter");
-        else if(command.equals("cp")) Terminal.print("WRITE THIS!!!");
-        else if(command.equals("cd")) Terminal.print("WRITE THIS!!!");
-        else if(command.equals("cat")) Terminal.print("WRITE THIS!!!");
-        else if(command.equals("ls")) Terminal.print("WRITE THIS!!!");
+        else if(command.equals("cp")) Terminal.print("You can copy files with this command, by using cp file /home/[username]");
+        else if(command.equals("cd")) Terminal.print("You can browse true the filesystem with this command, by using cd directory, i.e. cd mainframe.\nParameters .., you can go back with this parameter, by using cd ..");
+        else if(command.equals("cat")) Terminal.print("The cat command is for viewing the content of the files, by using cat file i.e. cat obama.txt.");
+        else if(command.equals("ls")) Terminal.print("The ls command is the command that will show you a list of the directory's and files in your current directory,\n i.e. you are in the mainframe/boot map, if you typ the ls command it will display grub. ");
+        else if(command.equals("rm")) Terminal.print("The rm command is made for removing files, by using rm file . This command can only be applied in you home directory (/home/[username])");
+        else if(command.equals("df")) Terminal.print("This command will give you the information about your harddrive storage, by using df");
+        else if(command.equals("goal")) Terminal.print("The goal command will provide you a list of items that should be collected by the player, by using goal");
         else if(command.equals("exit")) Terminal.print("This command exits the game/shell.");
         else Terminal.print("Sorry, there is no help topic found for the that command.");
     }
@@ -362,12 +377,24 @@ public class Command
                 Terminal.print("Error: The source file you specified can not be found.");
             }
     }
-    
+    /**
+     * df command will print the available disksize that the player can use.
+     * It also displays the maximum of which the user can use for the storage of his/her files
+     */
     public static void df()
     {
         Terminal.print("Filesystem              used               available");
         Terminal.print("/                       300 gb              500 gb");
         Terminal.print("/home                   " + Filesystem.getUsedDiskspace() + " kb              " + Filesystem.getDiskSize() + " kb");
         Terminal.print("/mnt/mainframe          300 gb              10000 gb");
+    }
+
+    /**
+     * The goal command will give the list of the files which the player should be looking for in the filesystem.
+     */
+    public static void goal()
+    {
+        Terminal.print("You have to find the following items to win the game:");
+        GameController.getGoals();
     }
 }

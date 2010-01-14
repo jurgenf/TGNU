@@ -176,24 +176,28 @@ public class GameController
      */
     public static void initGoal()
     {
+        /*
+         * The elements of this arraylist is just less than 10000 kb, 
+         * so don't touch it!
+         * */
         goal = new ArrayList<String>();       
         goal.add("aliendb.sql");
         goal.add("ufo-recovery.jpg");
-        goal.add("identify.jpg");
-        goal.add("corpse.jpg");
-        goal.add("unidentified.jpg");
-        goal.add("clues.jpg");
-        goal.add("tracks.jpg");
         goal.add("ufo.jpg");
         goal.add("wookie.jpg");
         goal.add("description.txt");
         goal.add("200912Pacific");
-        goal.add("200922Belgium");
-        goal.add("201001Vlissingen");
-        goal.add("2009EasterIsland");
-        goal.add("201001Vlissingen");
         goal.add("aliendata1.jpg");
-        goal.add("aliendata2.jpg");
+    }
+    
+    /**
+     * Will print the list of files which should be collected to the terminal.
+     */
+    public static void getGoals()
+    {
+        for(String goals : goal){
+            Terminal.print(goals);
+        }
     }
     
     /**
