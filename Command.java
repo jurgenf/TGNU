@@ -1,6 +1,13 @@
 import java.util.HashMap;
 import java.util.ArrayList;
 
+/**
+ * A class that will processes all commands which are available
+ * in TGNU.
+ * 
+ * @author TGNU Team
+ * @version 1.0
+ */
 public class Command
 {
     private static HashMap<String, CommandString> validCommands;
@@ -19,22 +26,26 @@ public class Command
         validCommands.put("cat", CommandString.CAT);
         validCommands.put("ls", CommandString.LIST);
         validCommands.put("rm", CommandString.RM);
+        validCommands.put("df", CommandString.DF);
     }
     
     /**
      * Check whether a given String is a valid command word. 
-     * @return true if it is, false if it isn't.
+     * 
+     * @return  true if it is, false if it isn't.
+     * @param   String aString which could be a valid command word
      */
     public static boolean isCommand(String aString)
     {
         return validCommands.containsKey(aString);
     }
     
-     /**
+    /**
      * Find the CommandWord associated with a command word.
-     * @param commandWord The word to look up.
-     * @return The CommandWord correspondng to commandWord, or UNKNOWN
-     *         if it is not a valid command word.
+     * 
+     * @param   commandWord The word to look up.
+     * @return  The CommandWord correspondng to commandWord, 
+     * or UNKNOWN if it is not a valid command word.           
      */
     public static CommandString getCommand(String commandWord)
     {
@@ -58,7 +69,8 @@ public class Command
      * is another command. If the player types exit, wantToQuit
      * will be true and the game will stop.
      * 
-     * @return      wantToQuit will return true if the players wants to exit.
+     * @return  wantToQuit will return true if the players wants to exit.
+     * @param   ArrayList<String> words, which are the words which the player typed.
      */
     public static boolean processCommand(ArrayList<String> words)
     {
@@ -118,6 +130,11 @@ public class Command
                 Terminal.print("For more information about the usage of this command type \"help rm\"");
             }
         }
+        else if (commands == CommandString.DF) {
+            if(words.size() == 1){
+                df();
+            }
+        }
        else if (commands == CommandString.QUIT) {
            wantToQuit = true;
         } 
@@ -125,7 +142,7 @@ public class Command
     }
     
     /**
-     * Print all valid commands to System.out.
+     * Print all valid commands to the Terminal
      */
     public static void showAllCommands() 
     {
@@ -136,6 +153,11 @@ public class Command
         Terminal.print("for more information about a command type help [command]");
     }
     
+    /**
+     * Method to print the description and the use of the specific command word.
+     * 
+     * @param   String command, command is the word which should be a command word to get the correct message for a command.
+     */    
     public static void showCommandHelp(String command)
     {
         //check trough all available help messages to find the one the user wants more information abou
@@ -148,6 +170,16 @@ public class Command
         else Terminal.print("Sorry, there is no help topic found for the that command.");
     }
     
+    /**
+     * Method which processes the command "cd".
+     * Checks wether if the user gives any parameters to cd or
+     * if there is a password on a directory. 
+     * 
+     * cd command also checks if there is a directory which
+     * the user types after the cd command.
+     * 
+     * @param   String options, the second word of the ArrayList<String> words which should be a directory.
+     */    
     public static void cd(String options) 
     {               
         if(options.equals("..") == true)
@@ -172,7 +204,7 @@ public class Command
             Directory found = Filesystem.findDirectoryByName(options);
             if(found != null)
             {                
-                if(options.equals("roadhouse"))
+                if(options.equals("roadhouse") || options.equals("Dont_look") || options.equals("important"))
                 {
                         GameController.gameOver();
                 }
@@ -201,6 +233,14 @@ public class Command
         }     
     }
     
+    /**
+     *  Method that processes the ls command.
+     *  
+     *  The command whill get all the directory´s and files 
+     *  of the currentDirectory. He will display for the directory´s
+     *  that is it actually a directory ([dir]) and for files he will print
+     *  that it are files with a file sizes ([file] && "kb")
+     */    
     public static void ls() 
     {
         for(Directory dir : Filesystem.getCurrentChilds())
@@ -213,6 +253,20 @@ public class Command
         }
     }
     
+    /**
+     * command that will excute the copy command.
+     * 
+     * It checks if he copies too the right folder,
+     * if so he will copy the file, if not he will print the 
+     * second error message that the required persmissions are not ok.
+     * 
+     * If the file already exists in the home folder it will say that the file
+     * is already in the home folder. If the file cannot be found it wil say that
+     * he can't find the file.
+     * 
+     * @param   String param1 is the file which is going to be copied
+     * @param   String param2 is the directory where the file is going to be copied too.
+     */    
     public static void cp(String param1, String param2)
     {
         File searchResult = Filesystem.findFileByName(param1);
@@ -220,10 +274,15 @@ public class Command
             if(param2.equals("/home/"+GameController.getUsername()) || param2.equals("/home/" + GameController.getUsername() + "/")) {
                 if(Filesystem.fileExists(searchResult) != true)
                 {
-                    Filesystem.copyFile(searchResult);
-                    if(GameController.checkVictory() == true)
+                    if(Filesystem.getUsedDiskspace() + searchResult.getSize() <= Filesystem.getDiskSize())
                     {
-                        GameController.wonCinematic();
+                        Filesystem.copyFile(searchResult);
+                        Filesystem.updateDiskspace();
+                        GameController.checkVictory();
+                    }
+                    else
+                    {
+                        Terminal.print("Error: insufficient diskspace");
                     }
                 }
                 else
@@ -239,7 +298,16 @@ public class Command
             Terminal.print("Error: The source file you specified can not be found.");
         }  
     }
-    
+
+    /**
+     * the cat command will show the content of the file.
+     * 
+     * If there is no content than it will say that
+     * he can't view the content of it.
+     * Or the file which the user types doesn't exists.
+     * 
+     * @param   String options, the second word of the ArrayList<String> words which should be a file.
+     */
     public static void cat(String options)
     {
         File searchResult = Filesystem.findFileByName(options);
@@ -255,7 +323,22 @@ public class Command
             Terminal.print("Error: The source file you specified can not be found.");
         }
     }
-    
+
+    /**
+     * Processes the rm command.
+     * Checks if the user that is trying to use the rm command
+     * is in it's home directory (/home/<username>). If so
+     * it will display the files which the player has copied to his folder and can
+     * if he wants to, remove the files which are unnecessary.
+     * 
+     * Gives error if the user tries to delete a file which doesn't exsists in
+     * his home folder. 
+     * 
+     * If the user isn't in his home folder and tries to delete a file or directory,
+     * it will give an error that he is not authorized to delete files or directory's.
+     * 
+     * @param   String options, the second word of the ArrayList<String> words which should be a file.
+     */
     public static void rm(String options)
     {
             File file = Filesystem.findFileByName(options);
@@ -265,6 +348,7 @@ public class Command
                 if(Filesystem.getCurrentDirectory().getName().equals(GameController.getUsername()))
                 {
                      Filesystem.removeFile(file);
+                     Filesystem.updateDiskspace();
                      Terminal.print("File deleted");
                 }
                 else
@@ -277,5 +361,13 @@ public class Command
             {
                 Terminal.print("Error: The source file you specified can not be found.");
             }
+    }
+    
+    public static void df()
+    {
+        Terminal.print("Filesystem              used               available");
+        Terminal.print("/                       300 gb              500 gb");
+        Terminal.print("/home                   " + Filesystem.getUsedDiskspace() + " kb              " + Filesystem.getDiskSize() + " kb");
+        Terminal.print("/mnt/mainframe          300 gb              10000 gb");
     }
 }

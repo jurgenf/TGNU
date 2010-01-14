@@ -1,9 +1,8 @@
-
 /**
  * An object of the class File represents a single file.
  * 
- * @author Patrick Brand 
- * @version v0.1
+ * @author TGNU Team
+ * @version 1.0
  */
 public class File
 {
@@ -12,7 +11,7 @@ public class File
     private int size;
 
 
-    /**
+     /**
      * Constructor for objects of class file
      * 
      * @param   String name     The name of the file
@@ -49,7 +48,7 @@ public class File
     /**
      * Get the size of the file.
      * 
-     * @return size     The size of the file
+     * @return  size     The size of the file
      */
     public int getSize()
     {

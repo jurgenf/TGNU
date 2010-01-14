@@ -3,8 +3,8 @@ import java.util.ArrayList;
  * This class is the main class for the program. From this class the game starts and all the other objects are initialized.
  * This class also holds some basic methods like the getUsername method.
  * 
- * @author TGNU team
- * @version 0.1
+ * @author TGNU Team
+ * @version 1.0
  */
 public class GameController
 {
@@ -13,7 +13,8 @@ public class GameController
     
     /**
      * the main method starts the game by printing the welcome tekst and call the initialize method.
-     * @param args arguments that where passed from the command
+     * 
+     * @param   args arguments that where passed from the command
      */
     public static void main(String[] args)
     {
@@ -74,7 +75,7 @@ public class GameController
     }
     
     /**
-     * Play a cinematic where the user sees itself hacking the Area51 mainframe
+     * Play a cinematic where the user sees itself hacking the Area51 mainframe.
      */
     public static void hackCinematic()
     {
@@ -110,8 +111,9 @@ public class GameController
     
     /**
      * Return the players username
-     * @return the players username
-     */    
+     * 
+     * @return  the players username
+     */   
     public static String getUsername()
     {
         return username;
@@ -121,8 +123,8 @@ public class GameController
      * sleep the program
      * used to simulate the feeling of the mainframe/computer processing the input
      * 
-     * @param   int the time to sleep in miliseconds
-     */    
+     * @param   int the time to sleep in miliseconds.
+     */      
     public static void sleep(int sleepTime) 
     {
         try {
@@ -133,29 +135,27 @@ public class GameController
         }
     }
 
+    /**
+     * Will print the game over message.
+     */
     public static void gameOver()
     {
-        Terminal.print("|¯¯¯¯\\   /¯¯¯¯¯\\     /¯¯¯¯¯| |¯¯¯¯\\°' |¯¯¯|¯¯¯|  /¯¯¯¯¯\\ |'¯¯|¯¯'|°/¯¯¯¯¯/ '  /¯x¯¯\\ ");
-        Terminal.print("|   x  <|'|     x    |'  /     !     | |  x     \\ |           |°|     x    |'|         | \\ __¯¯¯\' |   (\\__/|");
-        Terminal.print("|__|\\__\\ \\_____/ /___/¯|__'| |_____/ |___|___|  \\_____/  \\____/ '/______/| \\____\\ ");
-        Terminal.print("");
-        Terminal.print("----------------------------------------------------------------------------------------------------------------");
-        Terminal.print("");
-        Terminal.print(" /¯¯¯¯¯\\'     /¯¯¯¯¯| |¯¯¯\\/¯¯¯|  /¯x¯¯\\           /¯¯¯¯¯\\ \\¯¯¯\\    /¯¯¯/' /¯x¯¯\\ |¯¯¯¯\\  ");
-        Terminal.print("|   (/¯¯¯\\°  /     !     | |            '| |   (\\__/|         |     x    |'  \\     \\/      /  |   (\\__/||   x  <|'");
-        Terminal.print(" \\_____/' /___/¯|__'| |.__|\\/|__.|  \\____\\           \\_____/     \\_____/ _'  \\____\\ |__|\\__\\");
+        Terminal.print("You have been detected by the security scanner...");
+        Terminal.print("the authorities have been notified of you violation");
+        Terminal.print("Game Over!");
         sleep(2000);
         System.exit(1);
     }
     
     /**
+     * Checks if the player has the correct files collected.If so he the check will return true
      * 
+     * @return  returns true if the player has collected the correct set of items. 
      */
-    public static boolean checkVictory()
+    public static void checkVictory()
     {
         ArrayList<File> list = Filesystem.getUserdirectory().getFiles();
         int number = 0;
-        boolean check = false;
         
         for(String naam : goal)
         {
@@ -167,43 +167,60 @@ public class GameController
         
         if(goal.size() == number)
         {
-            check = true;
+            wonCinematic();
         }
-        
-        return check;
     }
-    
+
     /**
-     * 
+     * Creates the array with the files which should be collected.
      */
     public static void initGoal()
     {
         goal = new ArrayList<String>();       
+        goal.add("aliendb.sql");
+        goal.add("ufo-recovery.jpg");
+        goal.add("identify.jpg");
+        goal.add("corpse.jpg");
+        goal.add("unidentified.jpg");
+        goal.add("clues.jpg");
+        goal.add("tracks.jpg");
+        goal.add("ufo.jpg");
+        goal.add("wookie.jpg");
+        goal.add("description.txt");
+        goal.add("200912Pacific");
+        goal.add("200922Belgium");
+        goal.add("201001Vlissingen");
+        goal.add("2009EasterIsland");
+        goal.add("201001Vlissingen");
+        goal.add("aliendata1.jpg");
+        goal.add("aliendata2.jpg");
     }
     
-    public static void wonCinematic()
-{
+    /**
+     * The cinematic that will display the message when you've won the game.
+     */
+    private static void wonCinematic()
+    {
+        Terminal.print("  ####   ####  #    #  ####  #####    ##   ##### #    # #        ##   ##### #  ####  #    #  ####\n   #    ##    # ##   # #    # #    #  #  #    #   #    # #       #  #    #   # #    # ##   # #\n       #      #    # # #  # #     #    # #    #   #   #    # #      #    #   #   # #    # # #  #  ####\n   #      #    # #  # # #  ### #####  ######   #   #    # #      ######   #   # #    # #  # #      #\n  #    # #    # #   ## #    # #   #  #    #   #   #    # #      #    #   #   # #    # #   ## #    #\n   ####   ####  #    #  ####  #    # #    #   #    ####  ###### #    #   #   #  ####  #    # ####\n\n");
+        Terminal.print("Congratulations! you have proven to be a true h4x0r!");
 
-  Terminal.print("  ####   ####  #    #  ####  #####    ##   ##### #    # #        ##   ##### #  ####  #    #  ####\n   #    ##    # ##   # #    # #    #  #  #    #   #    # #       #  #    #   # #    # ##   # #\n       #      #    # # #  # #     #    # #    #   #   #    # #      #    #   #   # #    # # #  #  ####\n   #      #    # #  # # #  ### #####  ######   #   #    # #      ######   #   # #    # #  # #      #\n  #    # #    # #   ## #    # #   #  #    #   #   #    # #      #    #   #   # #    # #   ## #    #\n   ####   ####  #    #  ####  #    # #    #   #    ####  ###### #    #   #   #  ####  #    # ####\n\n");
-  Terminal.print("Congratulations! you have proven to be a true h4x0r!");
-
-  Terminal.printAsTyped("The files you have collected have been sent to the local newspaper");
-  Terminal.printAsTyped("Soon the whole world will know about the secrets of alien life");
-  Terminal.print("Credits:");
-  sleep(1000);
-  Terminal.printAsTyped("TGNU version 1.0");
-  Terminal.printAsTyped("Authors:");
-  Terminal.printAsTyped("Jaimy Casteleijn");
-  Terminal.printAsTyped("Patrick Brand");
-  Terminal.printAsTyped("Jurgen Franse");
-  Terminal.print("A word from our sponsors:");  
-  sleep(1000);
-  Terminal.printAsTyped("Do you want to buy cheap Viagra? We are an official viagra store!");
-  Terminal.printAsTyped("Programming @ your service: low coupling high cohesion.");
-  Terminal.printAsTyped("Maak van elke dag een leermomentje met BICT"); 
-  Terminal.printAsTyped("Join now and get an €1000 welcome bonus, just thing 'whatever' and do it!");
-  Terminal.printAsTyped("Low risk high profit online poker http://wouterpoker.nl");
-  Terminal.printAsTyped("The game will now terminate.................");
-  System.exit(1);      
-}
+        Terminal.printAsTyped("The files you have collected have been sent to the local newspaper");
+        Terminal.printAsTyped("Soon the whole world will know about the secrets of alien life");
+        Terminal.print("Credits:");
+        sleep(1000);
+        Terminal.printAsTyped("TGNU version 1.0");
+        Terminal.printAsTyped("Authors:");
+        Terminal.printAsTyped("Jaimy Casteleijn");
+        Terminal.printAsTyped("Patrick Brand");
+        Terminal.printAsTyped("Jurgen Franse");
+        Terminal.print("A word from our sponsors:");  
+        sleep(1000);
+        Terminal.printAsTyped("Do you want to buy cheap Viagra? We are an official viagra store!");
+        Terminal.printAsTyped("Programming @ your service: low coupling high cohesion.");
+        Terminal.printAsTyped("Maak van elke dag een leermomentje met BICT"); 
+        Terminal.printAsTyped("Join now and get an €1000 welcome bonus, just thing 'whatever' and do it!");
+        Terminal.printAsTyped("Low risk high profit online poker http://wouterpoker.nl");
+        Terminal.printAsTyped("The game will now terminate.................");
+        System.exit(1);      
+    }
 }

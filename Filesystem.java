@@ -3,8 +3,8 @@ import java.util.ArrayList;
  * This class makes it possible to create a filesystem by making directories and files 
  * and link them together
  * 
- * @author penguisher 
- * @version v0.3
+ * @author TGNU Team 
+ * @version 1.0
  */
 public class Filesystem
 {
@@ -12,6 +12,9 @@ public class Filesystem
     private static Directory userdir;
     //Set the default Directory to root   
     private static Directory currentDirectory = root;
+    
+    private static final int space = 10000;
+    private static int spaceUsed = 0;
            
     /**
      * Add the Child directories to their parents
@@ -65,6 +68,8 @@ public class Filesystem
         Directory www = website;
         Directory databaseVar = new Directory("database", mainframeVar);
         Directory databaseTmp = databaseVar;
+        Directory here = new Directory("Dont_look", mainframeTmp);
+        Directory important = new Directory("import", mainframeMedia);
         
         //addChilds
         root.addChild(home);
@@ -97,6 +102,8 @@ public class Filesystem
         mainframeHome.addChild(henry);
         mainframeHome.addChild(mainframeRoot);
         mainframeTmp.addChild(databaseTmp);
+        mainframeTmp.addChild(here);
+        mainframeMedia.addChild(important);
         mainframeVar.addChild(databaseVar);
         henry.addChild(alien1);
         henry.addChild(research1);
@@ -140,7 +147,7 @@ public class Filesystem
         et.addFile(new File("jiskefet.avi", "Debiteuren Crediteuren", 700000));
         et.addFile(new File("alienarena", "Alien Arena 2009 is a free multiplayer online deathmatch game and a must-try for all shooter fans.", 518000));
         
-        henry.addFile(new File("familyguy.avi", "episode 4 season 3", 7020012));
+        henry.addFile(new File("familyguy.avi", "|¯¯¯¯\\   /¯¯¯¯¯\\     /¯¯¯¯¯| |¯¯¯¯\\°' |¯¯¯|¯¯¯|  /¯¯¯¯¯\\|'¯¯|¯¯'|°/¯¯¯¯¯/ ' /¯x¯¯\\ \n|  x <|'|   x  |'  /   !   | |  x  \\  |       |°|x   |'|       | \\ __¯¯¯\' |  (\\_/|\n|__|\\__\\ \\_____/ /___/¯|__'||_____/  |___|___|  \\_____/   \\_____/ '/______/| \\____\\", 7020012));
         henry.addFile(new File("status.txt", "I am examining this interesting species at the moment. For some reason they seem attracted by electrical current. I will keep you up to date.", 123));
         
         fake1.addFile(new File("timetable.xls", null, 100));
@@ -173,7 +180,6 @@ public class Filesystem
         alien2.addFile(new File("clues.jpg", null, 1234));
         alien2.addFile(new File("tracks.jpg", null, 7820));
         
-        alien3.addFile(new File("tracks.jpg", null, 1723));
         alien3.addFile(new File("ufo.jpg", null, 4191));
         alien3.addFile(new File("chacarron.mp3", null, 1873));
         alien3.addFile(new File("wookie.jpg", null ,1828));
@@ -227,7 +233,7 @@ public class Filesystem
     /**
      * Get the current opened directory
      * 
-     * @return  return the current opened directory
+     * @return      return the current opened directory
      */
     public static Directory getCurrentDirectory()
     {
@@ -237,7 +243,7 @@ public class Filesystem
     /**
      * Set the current opened directory
      * 
-     * @param   Directory dir   The directory which should be opened.  
+     * @param       Directory dir   The directory which should be opened.  
      */
     public static void setCurrentDirectory(Directory dir)
     {
@@ -263,7 +269,7 @@ public class Filesystem
     /**
      * Copy the file to the list files in the userdirectory
      * 
-     * @param   File subject    The file which needs to be copied to the userdirectory
+     * @param       File subject    The file which needs to be copied to the userdirectory
      */
     public static void copyFile(File subject)
     {
@@ -273,7 +279,7 @@ public class Filesystem
     /**
      * Checks the list for the presence of the specified file
      * 
-     * @return  return the boolean check
+     * @return      return the boolean check
      */
     public static boolean fileExists(File subject)
     {
@@ -291,8 +297,8 @@ public class Filesystem
     /**
      * Find an object of the class Directory with a specific name
      * 
-     * @param   String name     The name of the directory one searches
-     * @return  directory       The object of the class Directory. returns null if not found.
+     * @param       String name     The name of the directory one searches
+     * @return      directory       The object of the class Directory. returns null if not found.
      */
     public static Directory findDirectoryByName(String name)
     {
@@ -311,7 +317,7 @@ public class Filesystem
      * Find an object of the class File with a specific name
      * 
      * @param   String name     The name of the file one searches
-     * @return  file            The object of the class File. returns null if not fount.
+     * @return  file            The object of the class File. returns null if not found.
      */
     public static File findFileByName(String name)
     {
@@ -329,7 +335,7 @@ public class Filesystem
     /**
      * Get the childs of the current directory
      * 
-     * @return  return the ArrayList<Directory>
+     * @return      return the ArrayList<Directory>
      */
     public static ArrayList<Directory> getCurrentChilds()
     {
@@ -339,7 +345,7 @@ public class Filesystem
     /**
      * Get the files of the current directory
      * 
-     * @return  return the ArrayList<File>
+     * @return      return the ArrayList<File>
      */
     public static ArrayList<File> getCurrentFiles()
     {
@@ -349,10 +355,44 @@ public class Filesystem
     /**
      * Remove the file from the list of files
      * 
-     * @param   File file   The file which needs to be deleted
+     * @param       File file   The file which needs to be deleted
      */
     public static void removeFile(File file)
     {
         getCurrentFiles().remove(file);
+    }
+            
+    /**
+     * Gets how many diskspace is used
+     * 
+     * @return  returns how many space is used on your harddrive
+     */
+    public static int getUsedDiskspace()
+    {
+        return spaceUsed;
+    }
+    
+    /**
+     * Updates how many space there is used on your harddrive
+     */
+    public static void updateDiskspace()
+    {
+        ArrayList<File> list = userdir.getFiles();
+        int subtotal = 0;
+        for(File file : list)
+        {
+            subtotal += file.getSize();
+        }
+        spaceUsed = subtotal;
+    }
+    
+    /**
+     * Return the disksize of the disk with the /home partition
+     * 
+     * @return  int     the disk size in kb
+     */
+    public static int getDiskSize()
+    {
+        return space;
     }
 }

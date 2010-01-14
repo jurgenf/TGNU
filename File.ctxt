@@ -7,5 +7,5 @@ comment1.text=\nGet\ the\ name\ of\ the\ file\n\n@return\ \ name\ \ \ \ The\ nam
 comment2.target=String\ getContent()
 comment2.text=\nGet\ the\ content\ of\ the\ file.\n\n@return\ \ content\ \ \ \ \ The\ content\ of\ the\ file\n\n
 comment3.target=int\ getSize()
-comment3.text=\nGet\ the\ size\ of\ the\ file.\n\n@return\ size\ \ \ \ \ The\ size\ of\ the\ file\n\n
+comment3.text=\nGet\ the\ size\ of\ the\ file.\n\n@return\ \ size\ \ \ \ \ The\ size\ of\ the\ file\n\n
 numComments=4

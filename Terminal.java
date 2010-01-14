@@ -17,6 +17,7 @@ public class Terminal
     
     /**
      * Print a line of text to the terminal
+     * 
      * @param  text   the text to print to the terminal
      */
     public static void print(String text)
@@ -26,8 +27,9 @@ public class Terminal
     
     /**
      * Print a line of text without printing a newline.
+     * 
      * @param   text   the text to print to the terminal
-     */    
+     */  
     public static void printInline(String text)
     {
         System.out.print(text);
@@ -35,6 +37,7 @@ public class Terminal
     
     /**
      * Print a line of text to the terminal as it was typed (typewriter effect)
+     * 
      * @param  text   the text to print to the terminal
      */
     public static void printAsTyped(String text)
@@ -50,8 +53,9 @@ public class Terminal
 
     /**
      * Ask the user to fill in a username, clean it up and return it.
+     * 
      * @return  the username the user choosed
-     */    
+     */  
     public static String askUsername() 
     {
         Terminal.printInline(prompt);
@@ -74,7 +78,7 @@ public class Terminal
      * This can be used in cinematics to fake a prompt
      * 
      * @return  the currently used prompt tekst
-     */    
+     */   
     public static String getPrompt() 
     {
         return prompt;
@@ -82,6 +86,7 @@ public class Terminal
    
     /**
      * Get the text the user has typed in the terminal and return it.
+     * 
      * @return  a String containing the text the user has typed.
      */
     public static String getRawUserInput() 
@@ -93,8 +98,9 @@ public class Terminal
     
     /**
      * Get the user input and process it so the processCommand method can interpret the command and the arguments.
+     * 
      * @return  an ArrayList containing strings that where typed into the terminal
-     */    
+     */   
     public static boolean getInput() 
     {
         System.out.print(prompt);

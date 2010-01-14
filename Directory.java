@@ -2,8 +2,8 @@ import java.util.ArrayList;
 /**
  * An object of the class Directory represents a directory of the filesystem.
  * 
- * @author Patrick Brand
- * @version v0.1
+ * @author TGNU Team
+ * @version 1.0
  */
 public class Directory
 {
@@ -50,7 +50,7 @@ public class Directory
      * The constructor creates an object of the class Directory.
      * It requires a String name.
      * 
-     * @param String name       The name of the directory.
+     * @param   String name       The name of the directory.
      */
     public Directory(String name)
     {
