@@ -1,4 +1,4 @@
-
+import java.util.ArrayList;
 /**
  * This class is the main class for the program. From this class the game starts and all the other objects are initialized.
  * This class also holds some basic methods like the getUsername method.
@@ -9,6 +9,7 @@
 public class GameController
 {
     private static String username;
+    private static ArrayList<String> goal;
     
     /**
      * the main method starts the game by printing the welcome tekst and call the initialize method.
@@ -42,13 +43,16 @@ public class GameController
         Terminal.setPrompt(username+"@h4ckst4ti0n> ");
         
         //start the intro
-        GameController.hackCinematic();
+        //GameController.hackCinematic();
         
         //create the filesystem
         Filesystem.createFilesystem();
         
         //load in the commands that can be used.
         Command.initCommandList();
+        
+        //create the list of files which needs to be found.
+        GameController.initGoal();
         
         //print the welcome message
         Terminal.print("");
@@ -143,4 +147,63 @@ public class GameController
         sleep(2000);
         System.exit(1);
     }
+    
+    /**
+     * 
+     */
+    public static boolean checkVictory()
+    {
+        ArrayList<File> list = Filesystem.getUserdirectory().getFiles();
+        int number = 0;
+        boolean check = false;
+        
+        for(String naam : goal)
+        {
+            if(list.contains(Filesystem.findFileByName(naam)) == true)
+            {
+                number ++;
+            }
+        }
+        
+        if(goal.size() == number)
+        {
+            check = true;
+        }
+        
+        return check;
+    }
+    
+    /**
+     * 
+     */
+    public static void initGoal()
+    {
+        goal = new ArrayList<String>();       
+    }
+    
+    public static void wonCinematic()
+{
+
+  Terminal.print("  ####   ####  #    #  ####  #####    ##   ##### #    # #        ##   ##### #  ####  #    #  ####\n   #    ##    # ##   # #    # #    #  #  #    #   #    # #       #  #    #   # #    # ##   # #\n       #      #    # # #  # #     #    # #    #   #   #    # #      #    #   #   # #    # # #  #  ####\n   #      #    # #  # # #  ### #####  ######   #   #    # #      ######   #   # #    # #  # #      #\n  #    # #    # #   ## #    # #   #  #    #   #   #    # #      #    #   #   # #    # #   ## #    #\n   ####   ####  #    #  ####  #    # #    #   #    ####  ###### #    #   #   #  ####  #    # ####\n\n");
+  Terminal.print("Congratulations! you have proven to be a true h4x0r!");
+
+  Terminal.printAsTyped("The files you have collected have been sent to the local newspaper");
+  Terminal.printAsTyped("Soon the whole world will know about the secrets of alien life");
+  Terminal.print("Credits:");
+  sleep(1000);
+  Terminal.printAsTyped("TGNU version 1.0");
+  Terminal.printAsTyped("Authors:");
+  Terminal.printAsTyped("Jaimy Casteleijn");
+  Terminal.printAsTyped("Patrick Brand");
+  Terminal.printAsTyped("Jurgen Franse");
+  Terminal.print("A word from our sponsors:");  
+  sleep(1000);
+  Terminal.printAsTyped("Do you want to buy cheap Viagra? We are an official viagra store!");
+  Terminal.printAsTyped("Programming @ your service: low coupling high cohesion.");
+  Terminal.printAsTyped("Maak van elke dag een leermomentje met BICT"); 
+  Terminal.printAsTyped("Join now and get an €1000 welcome bonus, just thing 'whatever' and do it!");
+  Terminal.printAsTyped("Low risk high profit online poker http://wouterpoker.nl");
+  Terminal.printAsTyped("The game will now terminate.................");
+  System.exit(1);      
+}
 }

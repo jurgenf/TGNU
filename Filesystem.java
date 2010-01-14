@@ -114,7 +114,6 @@ public class Filesystem
         //The Files
         mainframeEtc.addFile(new File("passwords", "user:thomas \npassword:1337 \nuser:et \npassword:Go Home \nuser:earl \npassword:My Name= \nuser:henry \npassword:Frankenstein", 10));
         mainframeEtc.addFile(new File("shadow", "6zI18EUZW4watEJ15NEmk0GpQjrAJU5h5BVWPMxwnPdjtdQdqhpRf7bWQo+4TcB2XkRKYL1q+hYZkDaLSi4+BltcmIYeWq0Y9ByNU7LPJsF11vkfGp8LoSaKBMwWG23DJNKk/tVH2Lu9R/Z60HhdhbbWQo+4TcB2CNLlRpNkZ8tMaPesK9xEog==", 50));
-        mainframeEtc.addFile(new File("profile", null, 1));
         mainframeEtc.addFile(new File("networks", null, 1));
         mainframeEtc.addFile(new File("modules", null, 1));
         mainframeEtc.addFile(new File("host.conf", null, 1));
@@ -142,7 +141,7 @@ public class Filesystem
         et.addFile(new File("alienarena", "Alien Arena 2009 is a free multiplayer online deathmatch game and a must-try for all shooter fans.", 518000));
         
         henry.addFile(new File("familyguy.avi", "episode 4 season 3", 7020012));
-        henry.addFile(new File("status.txt", "I am examining this interesting specie at the moment. For some reason they seem attracted by current. I will keep you up to date", 123));
+        henry.addFile(new File("status.txt", "I am examining this interesting species at the moment. For some reason they seem attracted by electrical current. I will keep you up to date.", 123));
         
         fake1.addFile(new File("timetable.xls", null, 100));
         fake1.addFile(new File("appointments.ics", null, 40));
@@ -187,7 +186,7 @@ public class Filesystem
         alien3.addFile(new File("description.txt", "sex: male \nage: 128 years \nlimbs: 24 \neyes: 5 \nskincolor: Chartreuse green", 18));
 
         research1.addFile(new File("200912Pacific", "A UFO crahed into the sea, we are going to investigate with a submarine", 29));
-        research1.addFile(new File("200911Area", "The coffee machine doesn't work anymore, how many scientist do you need to repair a coffe machine?", 201));
+        research1.addFile(new File("200911Area", "The coffee machine doesn't work anymore, how many scientist do you need to repair a coffee machine?", 201));
         research1.addFile(new File("200922Belgium", "We found a sign of alien life in Belgium", 21));
         research1.addFile(new File("200907Tasmania", "Strange lights had been seen there by the inhabitants, but after some investigation it seemed to be a swarm of fireflies", 28));
         research2.addFile(new File("201001California", "After digging a lot of holes, we didn't find anything.", 45));
@@ -246,7 +245,23 @@ public class Filesystem
     }
     
     /**
-     * Set the current opened directory to the user's directory (/home/"username") and copy the file to the list files.
+     * Get the root of the filesystem (/)
+     */
+    public static Directory getRoot()
+    {
+        return root;
+    }
+    
+    /**
+     * Get the userdirectory of the filesystem
+     */
+    public static Directory getUserdirectory()
+    {
+        return userdir;
+    }
+    
+    /**
+     * Copy the file to the list files in the userdirectory
      * 
      * @param   File subject    The file which needs to be copied to the userdirectory
      */
@@ -329,5 +344,15 @@ public class Filesystem
     public static ArrayList<File> getCurrentFiles()
     {
         return currentDirectory.getFiles();
+    }
+    
+    /**
+     * Remove the file from the list of files
+     * 
+     * @param   File file   The file which needs to be deleted
+     */
+    public static void removeFile(File file)
+    {
+        getCurrentFiles().remove(file);
     }
 }

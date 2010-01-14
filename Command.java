@@ -149,53 +149,56 @@ public class Command
     }
     
     public static void cd(String options) 
-    {
-            if(options.equals("roadhouse") == false && options.equals("..") == false)
-            {
-                Directory found = Filesystem.findDirectoryByName(options);
-                if(found != null)
+    {               
+        if(options.equals("..") == true)
+        {
+             if(Filesystem.getCurrentDirectory().getParent() != null)
+             {
+                 Filesystem.setCurrentDirectory(Filesystem.getCurrentDirectory().getParent());
+             }
+             else
+             {
+                 Terminal.print("You are already at root");
+             }
+         }
+         
+        else if(options.equals("/"))
+        {
+            Filesystem.setCurrentDirectory(Filesystem.getRoot());
+        }
+            
+        else
+        {
+            Directory found = Filesystem.findDirectoryByName(options);
+            if(found != null)
+            {                
+                if(options.equals("roadhouse"))
                 {
-                    if(found.getPassword() == null)
-                    {
+                        GameController.gameOver();
+                }
+                else if(found.getPassword() == null)
+                {
                     Filesystem.setCurrentDirectory(found);
                 }
-                    else{ 
-                        Terminal.printInline("Password: ");
-                        String input = Terminal.getRawUserInput();
-                        String password = found.getPassword();
-                        
-                        if(input.equals(password)){
-                            Filesystem.setCurrentDirectory(found);
-                        }
-                        else
-                        {
-                            Terminal.print("Sorry, try again");
-                        }
+                else{ 
+                    Terminal.printInline("Password: ");
+                    String input = Terminal.getRawUserInput();
+                    String password = found.getPassword();
+                       
+                    if(input.equals(password)){
+                        Filesystem.setCurrentDirectory(found);
                     }
-                }                
-                else
-                {
-                    Terminal.print("Sorry no such file or directory");
+                    else
+                    {
+                        Terminal.print("Sorry, try again");
+                    }
                 }
-            }
-        
-             else if(options.equals("roadhouse") == true)
-              {
-                  GameController.gameOver();
-              }
-            
-            else if(options.equals(".."))
+            }                
+            else
             {
-                if(Filesystem.getCurrentDirectory().getParent() != null)
-                {
-                    Filesystem.setCurrentDirectory(Filesystem.getCurrentDirectory().getParent());
-                }
-                else
-                {
-                    Terminal.print("You are already at root");
-                }
+                Terminal.print("Sorry no such file or directory");
             }
-
+        }     
     }
     
     public static void ls() 
@@ -218,6 +221,10 @@ public class Command
                 if(Filesystem.fileExists(searchResult) != true)
                 {
                     Filesystem.copyFile(searchResult);
+                    if(GameController.checkVictory() == true)
+                    {
+                        GameController.wonCinematic();
+                    }
                 }
                 else
                 {
@@ -251,29 +258,24 @@ public class Command
     
     public static void rm(String options)
     {
-        if(Filesystem.getCurrentDirectory().getName().equals(GameController.getUsername()))
-        {
-            boolean removed = false;
-            for(File file : Filesystem.getCurrentFiles())
+            File file = Filesystem.findFileByName(options);
+            boolean message = false;
+            if(file != null)
             {
-                if(file.getName().equals(options))
+                if(Filesystem.getCurrentDirectory().getName().equals(GameController.getUsername()))
                 {
-                    Filesystem.getCurrentFiles().remove(file);
-                    removed = true;
+                     Filesystem.removeFile(file);
+                     Terminal.print("File deleted");
                 }
-            }
-            if(removed == true)
-            {
-                Terminal.print("File deleted");
-            }
-            else
+                else
+                {
+                    Terminal.print("Error: You are not authorized to make changes in this directory");
+                    message = true;
+                }
+            }        
+            else if(message == false)
             {
                 Terminal.print("Error: The source file you specified can not be found.");
             }
-        }
-        else
-        {
-            Terminal.print("Error: You are not authorized to make changes in this directory");
-        }
     }
 }
