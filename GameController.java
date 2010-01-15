@@ -176,28 +176,18 @@ public class GameController
      */
     public static void initGoal()
     {
-        /*
-         * The elements of this arraylist is just less than 10000 kb, 
-         * so don't touch it!
-         * */
         goal = new ArrayList<String>();       
         goal.add("aliendb.sql");
         goal.add("ufo-recovery.jpg");
-        goal.add("ufo.jpg");
-        goal.add("wookie.jpg");
+        goal.add("al-corpse.jpg");
+        goal.add("unidentified-alien.jpg");
+        goal.add("ufo-clues.ppt");
         goal.add("description.txt");
-        goal.add("200912Pacific");
-        goal.add("aliendata1.jpg");
-    }
-    
-    /**
-     * Will print the list of files which should be collected to the terminal.
-     */
-    public static void getGoals()
-    {
-        for(String goals : goal){
-            Terminal.print(goals);
-        }
+        goal.add("200912Pacific.rtf");
+        goal.add("200922Belgium.php");
+        goal.add("2009EasterIsland.txt");
+        goal.add("201002Vlissingen.txt");
+        goal.add("alien1.jpg");
     }
     
     /**
@@ -224,6 +214,7 @@ public class GameController
         Terminal.printAsTyped("Maak van elke dag een leermomentje met BICT"); 
         Terminal.printAsTyped("Join now and get an €1000 welcome bonus, just thing 'whatever' and do it!");
         Terminal.printAsTyped("Low risk high profit online poker http://wouterpoker.nl");
+        Terminal.printAsTyped("Gewoon...Omdat het kan!");
         Terminal.printAsTyped("The game will now terminate.................");
         System.exit(1);      
     }

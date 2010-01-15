@@ -13,7 +13,7 @@ public class Filesystem
     //Set the default Directory to root   
     private static Directory currentDirectory = root;
     
-    private static final int space = 10000;
+    private static final int space = 30000;
     private static int spaceUsed = 0;
            
     /**
@@ -35,16 +35,16 @@ public class Filesystem
         //De directories van de area51 server
         Directory mainframe = new Directory("mainframe", root);
         Directory mainframeEtc = new Directory("etc", mainframe);
-        Directory acpi = new Directory("acpi", mainframeEtc);
-        Directory init = new Directory("init.d", mainframeEtc);
-        Directory grubEtc = new Directory("grub.d", mainframeEtc);
-        Directory x11 = new Directory("X11", mainframeEtc);
         Directory mainframeBin = new Directory("bin", mainframe);
         Directory mainframeHome = new Directory("home", mainframe);
         Directory mainframeTmp = new Directory("tmp", mainframe);
         Directory mainframeVar = new Directory("var", mainframe);
         Directory mainframeMedia = new Directory("media", mainframe);
         Directory mainframeBoot = new Directory("boot", mainframe);
+        Directory acpi = new Directory("acpi", mainframeEtc);
+        Directory init = new Directory("init.d", mainframeEtc);
+        Directory grubEtc = new Directory("grub.d", mainframeEtc);
+        Directory x11 = new Directory("X11", mainframeEtc);
         Directory grub = new Directory("grub", mainframeBoot);
         Directory cdrom = new Directory("cdrom", mainframeMedia);
         Directory cdrom0 = new Directory("cdrom0", mainframeMedia);
@@ -88,13 +88,13 @@ public class Filesystem
         mainframe.addChild(mainframeVar);
         mainframe.addChild(mainframeMedia);
         mainframe.addChild(mainframeBoot);
-        mainframeBoot.addChild(grub);
-        mainframeMedia.addChild(cdrom);
-        mainframeMedia.addChild(cdrom0);
         mainframeEtc.addChild(acpi);
         mainframeEtc.addChild(init);
         mainframeEtc.addChild(grubEtc);
         mainframeEtc.addChild(x11);
+        mainframeBoot.addChild(grub);
+        mainframeMedia.addChild(cdrom);
+        mainframeMedia.addChild(cdrom0);
         mainframeVar.addChild(www);
         mainframeHome.addChild(earl);
         mainframeHome.addChild(thomas);
@@ -138,7 +138,7 @@ public class Filesystem
         mainframeBin.addFile(new File("rm", null, 38));
         
         
-        databaseTmp.addFile(new File("aliendb.sql","#\n# Database structure for database 'alien'\n#\n\nCREATE DATABASE /*!32312 IF NOT EXISTS*/ \"alien\" /*!40100 DEFAULT CHARACTER SET latin1 */;\n\nUSE \"alien\";\n\n\n#\n# Table structure for table 'administration'\n#\n\nCREATE TABLE /*!32312 IF NOT EXISTS*/ \"administration\" (\n  \"idAlien\" int(11) NOT NULL,\n  \"alienSpecie\" varchar(45) DEFAULT NULL,\n  \"picture\" varchar(45) DEFAULT NULL,\n  \"length\" int(11) DEFAULT NULL,\n  \"weight\" varchar(45) DEFAULT NULL,\n  PRIMARY KEY (\"idAlien\")\n);\n\n\n\n#\n# Dumping data for table 'administration'\n#\n\nLOCK TABLES \"administration\" WRITE;\n/*!40000 ALTER TABLE \"administration\" DISABLE KEYS;*/\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n    (0,'Vulcan','http://memory-alpha.org/en/wiki/Vulcan',179,'63');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n   (1,'Klingon','http://memory-alpha.org/en/wiki/Klingon',150,'100');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n    (2,'Romulan','http://memory-alpha.org/en/wiki/Romulan',90,'10');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n  (3,'Cardassien','http://memory-alpha.org/en/wiki/Cardassian',120,'40');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n   (4,'Ferengi','http://memory-alpha.org/en/wiki/Ferengi',50,'20');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n  (5,'Borg','http://memory-alpha.org/en/wiki/Borg',102,'16');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n   (6,'Bejoran','http://memory-alpha.org/en/wiki/Bajoran',393,'23');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n (7,'Betazoid','http://memory-alpha.org/en/wiki/Betazoid',42,'89');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n    (8,'wookiee','http://musicselections.files.wordpress.com/20',200,'54');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n   (9,'umpa lumpa','http://sipr.net/oompa_loompa.jpg',120,'40');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n (10,'tribble','http://www.product-reviews.net/wp-content/use',10,'3');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n    (11,'tril','http://memory-alpha.org/en/wiki/Trill',24,'3');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n   (12,'goa''uld',NULL,127,'30');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n    (13,'wraith','http://memory-alpha.org/en/wiki/Wraith',579,'440');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n (14,'furling',NULL,376,'146');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n    (15,'jem''hadar',NULL,234,'78');\n/*!40000 ALTER TABLE \"administration\" ENABLE KEYS;*/\nUNLOCK TABLES;\n/*!40101 SET SQL_MODE=@OLD_SQL_MODE;*/\n/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;*/", 14));
+        databaseTmp.addFile(new File("aliendb.sql","#\n# Database structure for database 'alien'\n#\n\nCREATE DATABASE /*!32312 IF NOT EXISTS*/ \"alien\" /*!40100 DEFAULT CHARACTER SET latin1 */;\n\nUSE \"alien\";\n\n\n#\n# Table structure for table 'administration'\n#\n\nCREATE TABLE /*!32312 IF NOT EXISTS*/ \"administration\" (\n  \"idAlien\" int(11) NOT NULL,\n  \"alienSpecie\" varchar(45) DEFAULT NULL,\n  \"picture\" varchar(45) DEFAULT NULL,\n  \"length\" int(11) DEFAULT NULL,\n  \"weight\" varchar(45) DEFAULT NULL,\n  PRIMARY KEY (\"idAlien\")\n);\n\n\n\n#\n# Dumping data for table 'administration'\n#\n\nLOCK TABLES \"administration\" WRITE;\n/*!40000 ALTER TABLE \"administration\" DISABLE KEYS;*/\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n    (0,'Vulcan','http://memory-alpha.org/en/wiki/Vulcan',179,'63');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n   (1,'Klingon','http://memory-alpha.org/en/wiki/Klingon',150,'100');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n    (2,'Romulan','http://memory-alpha.org/en/wiki/Romulan',90,'10');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n  (3,'Cardassien','http://memory-alpha.org/en/wiki/Cardassian',120,'40');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n   (4,'Ferengi','http://memory-alpha.org/en/wiki/Ferengi',50,'20');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n  (5,'Borg','http://memory-alpha.org/en/wiki/Borg',102,'16');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n   (6,'Bejoran','http://memory-alpha.org/en/wiki/Bajoran',393,'23');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n (7,'Betazoid','http://memory-alpha.org/en/wiki/Betazoid',42,'89');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n    (8,'wookiee','http://musicselections.files.wordpress.com/20',200,'54');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n   (9,'umpa lumpa','http://sipr.net/oompa_loompa.jpg',120,'40');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n (10,'tribble','http://www.product-reviews.net/wp-content/use',10,'3');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n    (11,'tril','http://memory-alpha.org/en/wiki/Trill',24,'3');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n   (12,'goa''uld',NULL,127,'30');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n    (13,'wraith','http://memory-alpha.org/en/wiki/Wraith',579,'440');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n (14,'furling',NULL,376,'146');\nREPLACE INTO \"administration\" (\"idAlien\", \"alienSpecie\", \"picture\", \"length\", \"weight\") VALUES\n    (15,'jem''hadar',NULL,234,'78');\n/*!40000 ALTER TABLE \"administration\" ENABLE KEYS;*/\nUNLOCK TABLES;\n/*!40101 SET SQL_MODE=@OLD_SQL_MODE;*/\n/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;*/", 1024));
         mainframeTmp.addFile(new File("socket", null, 25));
         mainframeTmp.addFile(new File("adjiw20123@12", null, 21));
         mainframeTmp.addFile(new File("linc-d72-sad23", null, 76));
@@ -147,7 +147,7 @@ public class Filesystem
         et.addFile(new File("jiskefet.avi", "Debiteuren Crediteuren", 700000));
         et.addFile(new File("alienarena", "Alien Arena 2009 is a free multiplayer online deathmatch game and a must-try for all shooter fans.", 518000));
         
-        henry.addFile(new File("familyguy.avi", "|¯¯¯¯\\   /¯¯¯¯¯\\     /¯¯¯¯¯| |¯¯¯¯\\°' |¯¯¯|¯¯¯|  /¯¯¯¯¯\\|'¯¯|¯¯'|°/¯¯¯¯¯/ ' /¯x¯¯\\ \n|  x <|'|   x  |'  /   !   | |  x  \\  |       |°|x   |'|       | \\ __¯¯¯\' |  (\\_/|\n|__|\\__\\ \\_____/ /___/¯|__'||_____/  |___|___|  \\_____/   \\_____/ '/______/| \\____\\", 7020012));
+        henry.addFile(new File("familyguy.avi", "|¯¯¯¯\\   /¯¯¯¯¯\\     /¯¯¯¯¯| |¯¯¯¯\\°' |¯¯¯|¯¯¯|  /¯¯¯¯¯\\|'¯¯|¯¯'|°/¯¯¯¯¯/ ' /¯x¯¯\\ \n|  x <|'|   x  |'  /   !   | |  x  \\  |       |°|   x   |       | \\ __¯¯¯\'|| (\\_/|\n|__|\\__\\ \\_____/ /___/¯|__'| |_____/  |___|___|  \\_____/ \\_____/ '/______/ |\\____\\", 7020012));
         henry.addFile(new File("status.txt", "I am examining this interesting species at the moment. For some reason they seem attracted by electrical current. I will keep you up to date.", 123));
         
         fake1.addFile(new File("timetable.xls", null, 100));
@@ -167,20 +167,17 @@ public class Filesystem
         fake3.addFile(new File("projects.xls", null, 5023));
         
         alien1.addFile(new File("ufo-recovery.jpg", null, 2617));
-        alien1.addFile(new File("identify.jpg", null, 1737));
-        alien1.addFile(new File("corpse.jpg", null, 1275));
+        alien1.addFile(new File("al-corpse.jpg", null, 1275));
         alien1.addFile(new File("beach.jpg", null, 1752));
         alien1.addFile(new File("air.jpg", null, 17263));
-        alien1.addFile(new File("unidentified.jpg", null, 1923));
+        alien1.addFile(new File("unidentified-alien.jpg", null, 1923));
         
         alien2.addFile(new File("owwmommah.jpg", null,2718));
         alien2.addFile(new File("gramps.jpg", null, 7519));
         alien2.addFile(new File("stitch.jpg", null, 1723));
         alien2.addFile(new File("wecallhimhomer.jpg", null, 1725));
-        alien2.addFile(new File("clues.jpg", null, 1234));
-        alien2.addFile(new File("tracks.jpg", null, 7820));
+        alien2.addFile(new File("ufo-clues.ppt", null, 1234));
         
-        alien3.addFile(new File("ufo.jpg", null, 4191));
         alien3.addFile(new File("chacarron.mp3", null, 1873));
         alien3.addFile(new File("wookie.jpg", null ,1828));
         alien3.addFile(new File("beach1.jpg", null, 2823));
@@ -191,16 +188,16 @@ public class Filesystem
         alien3.addFile(new File("itsover9000.jpg", null, 2712));
         alien3.addFile(new File("description.txt", "sex: male \nage: 128 years \nlimbs: 24 \neyes: 5 \nskincolor: Chartreuse green", 18));
 
-        research1.addFile(new File("200912Pacific", "A UFO crahed into the sea, we are going to investigate with a submarine", 29));
+        research1.addFile(new File("200912Pacific.rtf", "A UFO crahed into the sea, we are going to investigate with a submarine", 290));
         research1.addFile(new File("200911Area", "The coffee machine doesn't work anymore, how many scientist do you need to repair a coffee machine?", 201));
-        research1.addFile(new File("200922Belgium", "We found a sign of alien life in Belgium", 21));
+        research1.addFile(new File("200922Belgium.php", "We found a sign of alien life in Belgium", 2100));
         research1.addFile(new File("200907Tasmania", "Strange lights had been seen there by the inhabitants, but after some investigation it seemed to be a swarm of fireflies", 28));
         research2.addFile(new File("201001California", "After digging a lot of holes, we didn't find anything.", 45));
         research2.addFile(new File("200912Area", "Server crash deleted our data. Technicians are trying to retreive our data.", 12));
-        research3.addFile(new File("201001Vlissingen", "Strange winds and extremely low temperatures were measured at Vlissingen, we are gathering intel about the weatherconditions now, it might be caused by aliens", 42));
+        research3.addFile(new File("201001Vlissingen.txt", "Strange winds and extremely low temperatures were measured at Vlissingen, we are gathering intel about the weatherconditions now, it might be caused by aliens", 4200));
         research3.addFile(new File("200912Area", "Server crashdeleted our data. Technicians re trying to retreive our data.", 12));
-        research4.addFile(new File("2009EasterIsland", "I'm posted at EasterIsland for a year, to investigate the unknown glowing piece of rock which landed there. I will post my results next week", 25));
-        research4.addFile(new File("201002Vlissingen", "Strange entitys detected in offices in a local university", 27));
+        research4.addFile(new File("2009EasterIsland.txt", "I'm posted at EasterIsland for a year, to investigate the unknown glowing piece of rock which landed there. I will post my results next week", 2500));
+        research4.addFile(new File("201002Vlissingen.txt", "Strange entities detected in offices in a local university", 27));
         
         acpi.addFile(new File("ejectbtn.sh", null, 20));
         acpi.addFile(new File("nextbtn.sh", null, 12));
@@ -226,8 +223,7 @@ public class Filesystem
         website.addFile(new File("menu.html", null, 23));
         website.addFile(new File("area.css", null, 14));
         website.addFile(new File("data.php", null, 137));
-        website.addFile(new File("aliendata1.jpg", null, 1238));
-        website.addFile(new File("aliendata2.jpg", null, 1273));
+        website.addFile(new File("alien.jpg", null, 1238));
     }
     
     /**
