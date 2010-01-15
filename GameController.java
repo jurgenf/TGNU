@@ -179,6 +179,7 @@ public class GameController
         goal = new ArrayList<String>();       
         goal.add("aliendb.sql");
         goal.add("ufo-recovery.jpg");
+<<<<<<< HEAD
         goal.add("al-corpse.jpg");
         goal.add("unidentified-alien.jpg");
         goal.add("ufo-clues.ppt");
@@ -188,6 +189,22 @@ public class GameController
         goal.add("2009EasterIsland.txt");
         goal.add("201002Vlissingen.txt");
         goal.add("alien1.jpg");
+=======
+        goal.add("identify.jpg");
+        goal.add("al-corpse.jpg");
+        goal.add("unidentified.jpg");
+        goal.add("ufo-clues.ppt");
+        goal.add("Alien-tracks.docx");
+        goal.add("ufo.jpg");
+        goal.add("description.txt");
+        goal.add("200912Pacific.rtf");
+        goal.add("200922Belgium.php");
+        goal.add("201001Vlissingen.pdf");
+        goal.add("2009EasterIsland.xps");
+        goal.add("201002Vlissingen.txt");
+        goal.add("aliendata1.jpg");
+        goal.add("aliendata2.jpg");
+>>>>>>> 30c4cd1bd505956db653b7650ae4c70842d0764a
     }
     
     /**
