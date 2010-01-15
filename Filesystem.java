@@ -13,11 +13,7 @@ public class Filesystem
     //Set the default Directory to root   
     private static Directory currentDirectory = root;
     
-<<<<<<< HEAD
     private static final int space = 30000;
-=======
-    private static final int space = 35000;
->>>>>>> 30c4cd1bd505956db653b7650ae4c70842d0764a
     private static int spaceUsed = 0;
            
     /**
@@ -181,10 +177,6 @@ public class Filesystem
         alien2.addFile(new File("stitch.jpg", null, 1723));
         alien2.addFile(new File("wecallhimhomer.jpg", null, 1725));
         alien2.addFile(new File("ufo-clues.ppt", null, 1234));
-<<<<<<< HEAD
-=======
-        alien2.addFile(new File("Alien-tracks.docx", null, 7820));
->>>>>>> 30c4cd1bd505956db653b7650ae4c70842d0764a
         
         alien3.addFile(new File("chacarron.mp3", null, 1873));
         alien3.addFile(new File("wookie.jpg", null ,1828));
@@ -202,17 +194,10 @@ public class Filesystem
         research1.addFile(new File("200907Tasmania", "Strange lights had been seen there by the inhabitants, but after some investigation it seemed to be a swarm of fireflies", 28));
         research2.addFile(new File("201001California", "After digging a lot of holes, we didn't find anything.", 45));
         research2.addFile(new File("200912Area", "Server crash deleted our data. Technicians are trying to retreive our data.", 12));
-<<<<<<< HEAD
         research3.addFile(new File("201001Vlissingen.txt", "Strange winds and extremely low temperatures were measured at Vlissingen, we are gathering intel about the weatherconditions now, it might be caused by aliens", 4200));
         research3.addFile(new File("200912Area", "Server crashdeleted our data. Technicians re trying to retreive our data.", 12));
         research4.addFile(new File("2009EasterIsland.txt", "I'm posted at EasterIsland for a year, to investigate the unknown glowing piece of rock which landed there. I will post my results next week", 2500));
         research4.addFile(new File("201002Vlissingen.txt", "Strange entities detected in offices in a local university", 27));
-=======
-        research3.addFile(new File("201001Vlissingen.pdf", "Strange winds and extremely low temperatures were measured at Vlissingen, we are gathering intel about the weatherconditions now, it might be caused by aliens", 4200));
-        research3.addFile(new File("200912Area", "Server crashdeleted our data. Technicians re trying to retreive our data.", 12));
-        research4.addFile(new File("2009EasterIsland.xps", "I'm posted at EasterIsland for a year, to investigate the unknown glowing piece of rock which landed there. I will post my results next week", 2500));
-        research4.addFile(new File("201002Vlissingen.txt", "Strange entitys detected in offices in a local university", 27));
->>>>>>> 30c4cd1bd505956db653b7650ae4c70842d0764a
         
         acpi.addFile(new File("ejectbtn.sh", null, 20));
         acpi.addFile(new File("nextbtn.sh", null, 12));

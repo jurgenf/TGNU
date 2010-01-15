@@ -1,41 +1,3 @@
-<<<<<<< HEAD
-#BlueJ class context
-comment0.target=void\ initCommandList()
-comment0.text=\nInitialize\ the\ HashMap\ for\ the\ validcommands\ and\nput\ the\ commands\ in\ the\ HashMap.\n\n
-comment1.params=aString
-comment1.target=boolean\ isCommand(String)
-comment1.text=\nCheck\ whether\ a\ given\ String\ is\ a\ valid\ command\ word.\ \n\n@return\ \ true\ if\ it\ is,\ false\ if\ it\ isn't.\n@param\ \ \ String\ aString\ which\ could\ be\ a\ valid\ command\ word\n\n
-comment10.params=options
-comment10.target=void\ rm(String)
-comment10.text=\nProcesses\ the\ rm\ command.\nChecks\ if\ the\ user\ that\ is\ trying\ to\ use\ the\ rm\ command\nis\ in\ it's\ home\ directory\ (/home/<username>).\ If\ so\nit\ will\ display\ the\ files\ which\ the\ player\ has\ copied\ to\ his\ folder\ and\ can\nif\ he\ wants\ to,\ remove\ the\ files\ which\ are\ unnecessary.\n\nGives\ error\ if\ the\ user\ tries\ to\ delete\ a\ file\ which\ doesn't\ exsists\ in\nhis\ home\ folder.\ \n\nIf\ the\ user\ isn't\ in\ his\ home\ folder\ and\ tries\ to\ delete\ a\ file\ or\ directory,\nit\ will\ give\ an\ error\ that\ he\ is\ not\ authorized\ to\ delete\ files\ or\ directory's.\n\n@param\ \ \ String\ options,\ the\ second\ word\ of\ the\ ArrayList<String>\ words\ which\ should\ be\ a\ file.\n\n
-comment11.target=void\ df()
-comment11.text=\ndf\ command\ will\ print\ the\ available\ disksize\ that\ the\ player\ can\ use.\nIt\ also\ displays\ the\ maximum\ of\ which\ the\ user\ can\ use\ for\ the\ storage\ of\ his/her\ files\n\n
-comment12.target=void\ goal()
-comment12.text=\nThe\ goal\ command\ will\ give\ the\ list\ of\ the\ files\ which\ the\ player\ should\ be\ looking\ for\ in\ the\ filesystem.\n\n
-comment2.params=commandWord
-comment2.target=CommandString\ getCommand(String)
-comment2.text=\nFind\ the\ CommandWord\ associated\ with\ a\ command\ word.\n\n@param\ \ \ commandWord\ The\ word\ to\ look\ up.\n@return\ \ The\ CommandWord\ correspondng\ to\ commandWord,\ \nor\ UNKNOWN\ if\ it\ is\ not\ a\ valid\ command\ word.\ \ \ \ \ \ \ \ \ \ \ \n\n
-comment3.params=words
-comment3.target=boolean\ processCommand(ArrayList<String>)
-comment3.text=\nProcesses\ the\ commands\ and\ the\ words\ which\ he\ receives\nfrom\ the\ terminal\ and\ will\ look\ if\ the\ first\ word\ \nis\ a\ command,\ if\ so\ he\ will\ excute\ the\ method\ of\ that\ command,\nif\ not\ he\ will\ say\ that\ it\ is\ a\ unknown\ command.\n\nchecks\ if\ the\ player\ wants\ to\ exit\ the\ game,\nif\ not\ wantToQuit\ will\ be\ false\ and\ checks\ if\ the\ word\nis\ another\ command.\ If\ the\ player\ types\ exit,\ wantToQuit\nwill\ be\ true\ and\ the\ game\ will\ stop.\n\n@return\ \ wantToQuit\ will\ return\ true\ if\ the\ players\ wants\ to\ exit.\n@param\ \ \ ArrayList<String>\ words,\ which\ are\ the\ words\ which\ the\ player\ typed.\n\n
-comment4.target=void\ showAllCommands()
-comment4.text=\nPrint\ all\ valid\ commands\ to\ the\ Terminal\n\n
-comment5.params=command
-comment5.target=void\ showCommandHelp(String)
-comment5.text=\nMethod\ to\ print\ the\ description\ and\ the\ use\ of\ the\ specific\ command\ word.\n\n@param\ \ \ String\ command,\ command\ is\ the\ word\ which\ should\ be\ a\ command\ word\ to\ get\ the\ correct\ message\ for\ a\ command.\n\n
-comment6.params=options
-comment6.target=void\ cd(String)
-comment6.text=\nMethod\ which\ processes\ the\ command\ "cd".\nChecks\ wether\ if\ the\ user\ gives\ any\ parameters\ to\ cd\ or\nif\ there\ is\ a\ password\ on\ a\ directory.\ \n\ncd\ command\ also\ checks\ if\ there\ is\ a\ directory\ which\nthe\ user\ types\ after\ the\ cd\ command.\n\n@param\ \ \ String\ options,\ the\ second\ word\ of\ the\ ArrayList<String>\ words\ which\ should\ be\ a\ directory.\n\n
-comment7.target=void\ ls()
-comment7.text=\nMethod\ that\ processes\ the\ ls\ command.\n\nThe\ command\ whill\ get\ all\ the\ directory\u00B4s\ and\ files\ \nof\ the\ currentDirectory.\ He\ will\ display\ for\ the\ directory\u00B4s\nthat\ is\ it\ actually\ a\ directory\ ([dir])\ and\ for\ files\ he\ will\ print\nthat\ it\ are\ files\ with\ a\ file\ sizes\ ([file]\ &&\ "kb")\n\n
-comment8.params=param1\ param2
-comment8.target=void\ cp(String,\ String)
-comment8.text=\ncommand\ that\ will\ excute\ the\ copy\ command.\n\nIt\ checks\ if\ he\ copies\ too\ the\ right\ folder,\nif\ so\ he\ will\ copy\ the\ file,\ if\ not\ he\ will\ print\ the\ \nsecond\ error\ message\ that\ the\ required\ persmissions\ are\ not\ ok.\n\nIf\ the\ file\ already\ exists\ in\ the\ home\ folder\ it\ will\ say\ that\ the\ file\nis\ already\ in\ the\ home\ folder.\ If\ the\ file\ cannot\ be\ found\ it\ wil\ say\ that\nhe\ can't\ find\ the\ file.\n\n@param\ \ \ String\ param1\ is\ the\ file\ which\ is\ going\ to\ be\ copied\n@param\ \ \ String\ param2\ is\ the\ directory\ where\ the\ file\ is\ going\ to\ be\ copied\ too.\n\n
-comment9.params=options
-comment9.target=void\ cat(String)
-comment9.text=\nthe\ cat\ command\ will\ show\ the\ content\ of\ the\ file.\n\nIf\ there\ is\ no\ content\ than\ it\ will\ say\ that\nhe\ can't\ view\ the\ content\ of\ it.\nOr\ the\ file\ which\ the\ user\ types\ doesn't\ exists.\n\n@param\ \ \ String\ options,\ the\ second\ word\ of\ the\ ArrayList<String>\ words\ which\ should\ be\ a\ file.\n\n
-numComments=13
-=======
 #BlueJ class context
 comment0.target=void\ initCommandList()
 comment0.text=\nInitialize\ the\ HashMap\ for\ the\ validcommands\ and\nput\ the\ commands\ in\ the\ HashMap.\n\n
@@ -70,4 +32,3 @@ comment9.params=options
 comment9.target=void\ cat(String)
 comment9.text=\nthe\ cat\ command\ will\ show\ the\ content\ of\ the\ file.\n\nIf\ there\ is\ no\ content\ than\ it\ will\ say\ that\nhe\ can't\ view\ the\ content\ of\ it.\nOr\ the\ file\ which\ the\ user\ types\ doesn't\ exists.\n\n@param\ \ \ String\ options,\ the\ second\ word\ of\ the\ ArrayList<String>\ words\ which\ should\ be\ a\ file.\n\n
 numComments=12
->>>>>>> 12d809ca6e55813b99c35052883d87961fcc3862

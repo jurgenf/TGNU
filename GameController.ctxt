@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-#BlueJ class context
-comment0.params=args
-comment0.target=void\ main(String[])
-comment0.text=\nthe\ main\ method\ starts\ the\ game\ by\ printing\ the\ welcome\ tekst\ and\ call\ the\ initialize\ method.\n\n@param\ \ \ args\ arguments\ that\ where\ passed\ from\ the\ command\n\n
-comment1.target=void\ initTheGame()
-comment1.text=\nInitialize\ the\ game\!\nThis\ method\ start\ the\ game\ by\ showing\ the\ intro\ and\ initializes\ all\ components\nAfter\ all\ components\ are\ loaded\ the\ welcome\ message\ is\ showed.\n\n
-comment2.target=void\ hackCinematic()
-comment2.text=\nPlay\ a\ cinematic\ where\ the\ user\ sees\ itself\ hacking\ the\ Area51\ mainframe.\n\n
-comment3.target=String\ getUsername()
-comment3.text=\nReturn\ the\ players\ username\n\n@return\ \ the\ players\ username\n\n
-comment4.params=sleepTime
-comment4.target=void\ sleep(int)
-comment4.text=\nsleep\ the\ program\nused\ to\ simulate\ the\ feeling\ of\ the\ mainframe/computer\ processing\ the\ input\n\n@param\ \ \ int\ the\ time\ to\ sleep\ in\ miliseconds.\n\n
-comment5.target=void\ gameOver()
-comment5.text=\nWill\ print\ the\ game\ over\ message.\n\n
-comment6.target=void\ checkVictory()
-comment6.text=\nChecks\ if\ the\ player\ has\ the\ correct\ files\ collected.If\ so\ he\ the\ check\ will\ return\ true\n\n@return\ \ returns\ true\ if\ the\ player\ has\ collected\ the\ correct\ set\ of\ items.\ \n\n
-comment7.target=void\ initGoal()
-comment7.text=\nCreates\ the\ array\ with\ the\ files\ which\ should\ be\ collected.\n\n
-comment8.target=void\ getGoals()
-comment8.text=\nWill\ print\ the\ list\ of\ files\ which\ should\ be\ collected\ to\ the\ terminal.\n\n
-comment9.target=void\ wonCinematic()
-comment9.text=\nThe\ cinematic\ that\ will\ display\ the\ message\ when\ you've\ won\ the\ game.\n\n
-numComments=10
-=======
 #BlueJ class context
 comment0.params=args
 comment0.target=void\ main(String[])
@@ -46,4 +20,3 @@ comment7.text=\nCreates\ the\ array\ with\ the\ files\ which\ should\ be\ collec
 comment8.target=void\ wonCinematic()
 comment8.text=\nThe\ cinematic\ that\ will\ display\ the\ message\ when\ you've\ won\ the\ game.\n\n
 numComments=9
->>>>>>> 12d809ca6e55813b99c35052883d87961fcc3862
