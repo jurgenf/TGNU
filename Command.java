@@ -27,7 +27,6 @@ public class Command
         validCommands.put("ls", CommandString.LIST);
         validCommands.put("rm", CommandString.RM);
         validCommands.put("df", CommandString.DF);
-        validCommands.put("goal", CommandString.GOAL);
     }
     
     /**
@@ -139,14 +138,6 @@ public class Command
                 Terminal.print("For more information about the usage of this command type \"help df\"");
             }
         }
-        else if (commands == CommandString.GOAL) {
-            if(words.size() == 1){
-                goal();
-            }
-            else{
-                Terminal.print("For more information about the usage of this command type \"help goal\"");
-            }
-        }
        else if (commands == CommandString.QUIT) {
            wantToQuit = true;
         } 
@@ -180,7 +171,6 @@ public class Command
         else if(command.equals("ls")) Terminal.print("The ls command is the command that will show you a list of the directory's and files in your current directory,\n i.e. you are in the mainframe/boot map, if you typ the ls command it will display grub. ");
         else if(command.equals("rm")) Terminal.print("The rm command is made for removing files, by using rm file . This command can only be applied in you home directory (/home/[username])");
         else if(command.equals("df")) Terminal.print("This command will give you the information about your harddrive storage, by using df");
-        else if(command.equals("goal")) Terminal.print("The goal command will provide you a list of items that should be collected by the player, by using goal");
         else if(command.equals("exit")) Terminal.print("This command exits the game/shell.");
         else Terminal.print("Sorry, there is no help topic found for the that command.");
     }
@@ -387,14 +377,5 @@ public class Command
         Terminal.print("/                       300 gb              500 gb");
         Terminal.print("/home                   " + Filesystem.getUsedDiskspace() + " kb              " + Filesystem.getDiskSize() + " kb");
         Terminal.print("/mnt/mainframe          300 gb              10000 gb");
-    }
-
-    /**
-     * The goal command will give the list of the files which the player should be looking for in the filesystem.
-     */
-    public static void goal()
-    {
-        Terminal.print("You have to find the following items to win the game:");
-        GameController.getGoals();
     }
 }
